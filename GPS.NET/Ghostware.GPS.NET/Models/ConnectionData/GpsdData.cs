@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 
-namespace Ghostware.GPS.NET.Models.Gpsd
+namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public class ProxyData
+    public struct GpsdData : IGpsData
     {
         public string Address { get; set; }
         public int Port { get; set; }

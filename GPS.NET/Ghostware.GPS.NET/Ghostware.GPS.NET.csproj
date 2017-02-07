@@ -45,14 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\GpsClientFactory.cs" />
-    <Compile Include="GpsClients\BaseGpsClient.cs" />
     <Compile Include="GpsClients\ComPortGpsClient.cs" />
     <Compile Include="GpsClients\FileGpsClient.cs" />
     <Compile Include="GpsClients\GpsdGpsClient.cs" />
+    <Compile Include="GpsClients\Interfaces\IBaseGpsClient.cs" />
     <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
     <Compile Include="GpsService.cs" />
-    <Compile Include="Models\Gpsd\ProxyData.cs" />
-    <Compile Include="Models\GpsServiceType.cs" />
+    <Compile Include="Models\ConnectionData\ComPortData.cs" />
+    <Compile Include="Models\ConnectionData\FileGpsData.cs" />
+    <Compile Include="Models\ConnectionData\Interfaces\IGpsData.cs" />
+    <Compile Include="Models\ConnectionData\GpsdData.cs" />
+    <Compile Include="Enums\GpsType.cs" />
+    <Compile Include="Models\WindowsLocationApiData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
