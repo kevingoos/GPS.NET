@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ghostware.GPSDLib</id>
+    <version>1.0.5</version>
+    <title>Ghostware.GPSDLib</title>
+    <authors>Ghosttje</authors>
+    <owners>Ghostware</owners>
+    <projectUrl>https://github.com/GhostwareDev/GPSDLib</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library for connecting to a GPSD service (GPS Deamon) in C#. (There is no official support by the developers for C#)</description>
+    <releaseNotes>
+		v1.0.5:
+		--------
+		- Bugfixes
+		
+		v1.0.4:
+		--------
+		- Small bugfixes
+	
+		v1.0.3:
+		--------
+		- Added some features for WPF.
+		- Fixed a bug with the device classes.
+		- Added some improvements and stability bugfixes.
+		- Improved error handling.
+		- Added a WPF sample.
+		
+		v1.0.2:
+		--------
+		- Added retry pattern.
+		- Added a raw data event.
+		- Some bugfixes.
+		
+		v1.0.1:
+		--------
+		- Added support for securestring when using the proxy.
+		
+		v1.0.0:
+		--------
+		- Bugfix: parser crashes when there is no data coming in.
+		- Rename of package (from Ghosttje.GPSDLib to Ghostware.GPSDLib).
+	
+		v0.0.1:
+		--------
+		- Initial start of the project.
+	</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+	<tags>GPSD</tags>
+  </metadata>
+</package>

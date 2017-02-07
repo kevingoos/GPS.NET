@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}</ProjectGuid>
+    <ProjectGuid>{76CA949B-C65E-497B-AA48-8651E3306436}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ghostware.GPS.NET</RootNamespace>
-    <AssemblyName>Ghostware.GPS.NET</AssemblyName>
+    <RootNamespace>Ghostware.GPSDLib</RootNamespace>
+    <AssemblyName>Ghostware.GPSDLib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ghostware.NMEAParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghostware.NMEAParser.1.0.3\lib\net452\Ghostware.NMEAParser.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,20 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\GpsClientFactory.cs" />
-    <Compile Include="GpsClients\BaseGpsClient.cs" />
-    <Compile Include="GpsClients\ComPortGpsClient.cs" />
-    <Compile Include="GpsClients\FileGpsClient.cs" />
-    <Compile Include="GpsClients\GpsdGpsClient.cs" />
-    <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
-    <Compile Include="GpsService.cs" />
-    <Compile Include="Models\Gpsd\ProxyData.cs" />
-    <Compile Include="Models\GpsServiceType.cs" />
+    <Compile Include="Exceptions\ConnectionLostException.cs" />
+    <Compile Include="Exceptions\NotConnectedException.cs" />
+    <Compile Include="GpsdConstants.cs" />
+    <Compile Include="GpsdDataParser.cs" />
+    <Compile Include="Models\DataClassType.cs" />
+    <Compile Include="Models\GpsDevice.cs" />
+    <Compile Include="Models\GpsDevices.cs" />
+    <Compile Include="Models\GpsdVersion.cs" />
+    <Compile Include="GpsdService.cs" />
+    <Compile Include="Models\GpsLocation.cs" />
+    <Compile Include="Models\GpsdOptions.cs" />
+    <Compile Include="Exceptions\UnknownTypeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
