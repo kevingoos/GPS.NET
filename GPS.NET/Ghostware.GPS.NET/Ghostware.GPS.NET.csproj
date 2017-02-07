@@ -42,6 +42,10 @@
   <ItemGroup>
     <Compile Include="Factories\GpsClientFactory.cs" />
     <Compile Include="GpsClients\BaseGpsClient.cs" />
+    <Compile Include="GpsClients\ComPortGpsClient.cs" />
+    <Compile Include="GpsClients\FileGpsClient.cs" />
+    <Compile Include="GpsClients\GpsdGpsClient.cs" />
+    <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
     <Compile Include="GpsService.cs" />
     <Compile Include="Models\Gpsd\ProxyData.cs" />
     <Compile Include="Models\GpsServiceType.cs" />

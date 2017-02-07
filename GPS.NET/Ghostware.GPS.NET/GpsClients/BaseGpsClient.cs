@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ghostware.GPS.NET.GpsClients
+﻿namespace Ghostware.GPS.NET.GpsClients
 {
     public abstract class BaseGpsClient
     {
