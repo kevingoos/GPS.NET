@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidDataTypeException.cs" />
     <Compile Include="Factories\GpsClientFactory.cs" />
+    <Compile Include="Factories\GpsDataFactory.cs" />
     <Compile Include="GpsClients\ComPortGpsClient.cs" />
     <Compile Include="GpsClients\FileGpsClient.cs" />
     <Compile Include="GpsClients\GpsdGpsClient.cs" />
@@ -56,7 +58,7 @@
     <Compile Include="Models\ConnectionData\Interfaces\IGpsData.cs" />
     <Compile Include="Models\ConnectionData\GpsdData.cs" />
     <Compile Include="Enums\GpsType.cs" />
-    <Compile Include="Models\WindowsLocationApiData.cs" />
+    <Compile Include="Models\ConnectionData\WindowsLocationApiData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

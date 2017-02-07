@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPSDTestApplicati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPSDTestConsole", "Ghostware.GPSDTestConsole\Ghostware.GPSDTestConsole.csproj", "{A5ABDCCF-ECA9-4C69-9B89-63C4432D9E07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.UnitTests", "Ghostware.GPS.NET.UnitTests\Ghostware.GPS.NET.UnitTests.csproj", "{687F1BB3-0D9A-424D-B1FB-776C2157601E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A5ABDCCF-ECA9-4C69-9B89-63C4432D9E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5ABDCCF-ECA9-4C69-9B89-63C4432D9E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5ABDCCF-ECA9-4C69-9B89-63C4432D9E07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{687F1BB3-0D9A-424D-B1FB-776C2157601E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{687F1BB3-0D9A-424D-B1FB-776C2157601E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{687F1BB3-0D9A-424D-B1FB-776C2157601E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{687F1BB3-0D9A-424D-B1FB-776C2157601E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
