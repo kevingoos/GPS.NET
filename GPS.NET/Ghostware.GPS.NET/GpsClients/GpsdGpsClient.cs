@@ -4,18 +4,29 @@ using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
-    public class GpsdGpsClient : IBaseGpsClient
+    public class GpsdGpsClient : BaseGpsClient
     {
-        public GpsType GpsType => GpsType.Gpsd;
+        #region Constructors
 
-        public void Connect(IGpsData connectionData)
+        public GpsdGpsClient() : base(GpsType.Gpsd)
+        {
+
+        }
+
+        #endregion
+
+        #region Connect and Disconnect
+
+        public override void Connect(IGpsData connectionData)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Disconnect()
+        public override void Disconnect()
         {
             throw new System.NotImplementedException();
         }
+
+        #endregion
     }
 }
