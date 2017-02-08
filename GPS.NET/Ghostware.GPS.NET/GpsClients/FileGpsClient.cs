@@ -1,15 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Exceptions;
-using Ghostware.GPS.NET.GpsClients.Interfaces;
 using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 using Ghostware.GPS.NET.Models.Events;
-using Ghostware.GPSDLib;
-using Ghostware.GPSDLib.Models;
+using Ghostware.GPS.NET.Models.GpsdModels;
+using Ghostware.GPS.NET.Parsers;
 using Ghostware.NMEAParser;
 using Ghostware.NMEAParser.Exceptions;
 using Ghostware.NMEAParser.NMEAMessages;

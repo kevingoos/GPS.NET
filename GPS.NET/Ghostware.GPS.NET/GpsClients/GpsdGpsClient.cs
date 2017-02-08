@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Ghostware.GPS.NET.Encryption;
+using System.IO;
+using System.Net.Sockets;
+using Ghostware.GPS.NET.Constants;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.GpsClients.Interfaces;
+using Ghostware.GPS.NET.Handlers;
 using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 using Ghostware.GPS.NET.Models.Events;
-using Ghostware.GPSDLib;
+using Ghostware.GPS.NET.Models.GpsdModels;
+using Ghostware.GPS.NET.Parsers;
 using Ghostware.GPSDLib.Exceptions;
-using Ghostware.GPSDLib.Models;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
@@ -18,7 +17,13 @@ namespace Ghostware.GPS.NET.GpsClients
     {
         #region Private Properties
 
-        private GpsdService _gpsdService;
+        private TcpClient _client;
+        private StreamReader _streamReader;
+        private StreamWriter _streamWriter;
+
+        private GpsdDataParser _gpsdDataParser;
+        private int _retryReadCount;
+        private GpsLocation _previousGpsLocation;
 
         #endregion
 
@@ -37,53 +42,90 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (GpsdData)connectionData;
 
-            _gpsdService = new GpsdService(data.Address, data.Port);
-            if (data.IsProxyEnabled)
-            {
-                _gpsdService.SetProxy(data.ProxyAddress, data.ProxyPort);
-                if (data.IsProxyAuthManual)
-                {
-                    _gpsdService.SetProxyAuthentication(data.Username, data.Password);
-                }
-            }
+            _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);
+            _streamReader = new StreamReader(_client.GetStream());
+            _streamWriter = new StreamWriter(_client.GetStream());
 
-            _gpsdService.OnLocationChanged += GpsdServiceOnOnLocationChanged;
-            _gpsdService.OnRawLocationChanged += GpsdServiceOnOnRawLocationChanged;
+            _gpsdDataParser = new GpsdDataParser();
 
-            bool connected;
-            try
-            {
-                connected = _gpsdService.Connect();
-            }
-            catch (AggregateException ex)
-            {
-                if (ex.InnerExceptions.FirstOrDefault()?.GetType() == typeof(WebException))
-                {
-                    return false;
-                }
-                throw;
-            }
+            var gpsData = _streamReader.ReadLine();
+            var message = _gpsdDataParser.GetGpsData(gpsData);
+            var version = message as GpsdVersion;
+            if (version == null) return false;
+            ExecuteGpsdCommand(data.GpsOptions.GetCommand());
 
-            if (connected)
-            {
-                _gpsdService.StartGpsReading();
-            }
-            return connected;
+            StartGpsReading(data);
+
+            return true;
         }
 
-        private void GpsdServiceOnOnRawLocationChanged(object source, string rawLocation)
+        public void StartGpsReading(GpsdData data)
         {
-            OnRawGpsDataReceived(rawLocation);
-        }
+            if (_streamReader == null || !_client.Connected) throw new NotConnectedException();
 
-        private void GpsdServiceOnOnLocationChanged(object source, GpsLocation e)
-        {
-            OnGpsDataReceived(new GpsDataEventArgs(e));
+            _retryReadCount = data.RetryRead;
+            IsRunning = true;
+            while (IsRunning)
+            {
+                if (!_client.Connected)
+                {
+                    throw new ConnectionLostException();
+                }
+
+                try
+                {
+                    var gpsData = _streamReader.ReadLine();
+                    OnRawGpsDataReceived(gpsData);
+                    if (gpsData == null)
+                    {
+                        if (_retryReadCount == 0)
+                        {
+                            Disconnect();
+                            throw new ConnectionLostException();
+                        }
+                        _retryReadCount--;
+                        continue;
+                    }
+
+                    var message = _gpsdDataParser.GetGpsData(gpsData);
+                    var gpsLocation = message as GpsLocation;
+                    if (gpsLocation == null ||
+                        (_previousGpsLocation != null &&
+                         gpsLocation.Time.Subtract(new TimeSpan(0, 0, 0, 0, data.ReadFrequenty)) <= _previousGpsLocation.Time))
+                        continue;
+                    OnGpsDataReceived(new GpsDataEventArgs(gpsLocation));
+                    _previousGpsLocation = gpsLocation;
+                }
+                catch (IOException)
+                {
+                    Disconnect();
+                    throw;
+                }
+            }
         }
 
         public override bool Disconnect()
         {
-            return _gpsdService.Disconnect();
+            if (!IsRunning) return true;
+            IsRunning = false;
+            ExecuteGpsdCommand(GpsdConstants.DisableCommand);
+
+            _streamReader?.Close();
+            _streamWriter?.Close();
+            _client?.Close();
+
+            return true;
+        }
+
+        #endregion
+
+        #region GPSD Commands
+
+        private void ExecuteGpsdCommand(string command)
+        {
+            if (_streamWriter == null) return;
+            _streamWriter.WriteLine(command);
+            _streamWriter.Flush();
         }
 
         #endregion

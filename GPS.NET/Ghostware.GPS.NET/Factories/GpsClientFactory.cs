@@ -1,7 +1,6 @@
 ﻿using System;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.GpsClients;
-using Ghostware.GPS.NET.GpsClients.Interfaces;
 using Ghostware.GPS.NET.Models;
 
 namespace Ghostware.GPS.NET.Factories

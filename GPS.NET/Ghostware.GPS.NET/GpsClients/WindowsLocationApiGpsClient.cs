@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.GpsClients.Interfaces;
 using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 

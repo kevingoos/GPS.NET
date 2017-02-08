@@ -1,5 +1,5 @@
 ﻿using System;
-using Ghostware.GPSDLib.Models;
+using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.NMEAParser.NMEAMessages;
 
 namespace Ghostware.GPS.NET.Models.Events

@@ -34,8 +34,13 @@
       <HintPath>..\packages\Ghostware.NMEAParser.1.0.3\lib\net452\Ghostware.NMEAParser.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,18 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\GpsdConstants.cs" />
     <Compile Include="Converters\CoordinateConverterUtilities.cs" />
     <Compile Include="Encryption\StringEncryption.cs" />
     <Compile Include="Enums\FileType.cs" />
     <Compile Include="Enums\GpsCoordinateSystem.cs" />
+    <Compile Include="Exceptions\ConnectionLostException.cs" />
     <Compile Include="Exceptions\InvalidDataTypeException.cs" />
+    <Compile Include="Exceptions\NotConnectedException.cs" />
+    <Compile Include="Exceptions\UnknownTypeException.cs" />
     <Compile Include="Factories\GpsClientFactory.cs" />
     <Compile Include="Factories\GpsDataFactory.cs" />
     <Compile Include="GpsClients\ComPortGpsClient.cs" />
     <Compile Include="GpsClients\FileGpsClient.cs" />
     <Compile Include="GpsClients\GpsdGpsClient.cs" />
-    <Compile Include="GpsClients\Interfaces\IBaseGpsClient.cs" />
+    <Compile Include="GpsClients\BaseGpsClient.cs" />
     <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
+    <Compile Include="Models\GpsdModels\DataClassType.cs" />
+    <Compile Include="Models\GpsdModels\GpsDevice.cs" />
+    <Compile Include="Models\GpsdModels\GpsDevices.cs" />
+    <Compile Include="Models\GpsdModels\GpsdOptions.cs" />
+    <Compile Include="Models\GpsdModels\GpsdVersion.cs" />
+    <Compile Include="Models\GpsdModels\GpsLocation.cs" />
+    <Compile Include="Parsers\GpsdDataParser.cs" />
     <Compile Include="GpsService.cs" />
     <Compile Include="Models\ConnectionData\ComPortData.cs" />
     <Compile Include="Models\ConnectionData\FileGpsData.cs" />
@@ -66,15 +82,10 @@
     <Compile Include="Models\ConnectionData\WindowsLocationApiData.cs" />
     <Compile Include="Models\Events\GpsDataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Handlers\ProxyClientHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ghostware.GPSDLib\Ghostware.GPSDLib.csproj">
-      <Project>{76CA949B-C65E-497B-AA48-8651E3306436}</Project>
-      <Name>Ghostware.GPSDLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Plugins\ETRS89_LAMBERT_UTM_32bits.dll">
@@ -84,6 +95,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

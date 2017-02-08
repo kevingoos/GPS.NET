@@ -2,7 +2,7 @@
 
 namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public struct ComPortData : IGpsData
+    public class ComPortData : IGpsData
     {
         public string ComPort { get; set; }
     }

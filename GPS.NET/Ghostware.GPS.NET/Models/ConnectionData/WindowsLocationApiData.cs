@@ -2,7 +2,7 @@
 
 namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public struct WindowsLocationApiData : IGpsData
+    public class WindowsLocationApiData : IGpsData
     {
     }
 }

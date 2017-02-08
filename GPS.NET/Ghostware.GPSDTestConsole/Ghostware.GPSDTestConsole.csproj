@@ -50,12 +50,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ghostware.GPSDLib\Ghostware.GPSDLib.csproj">
-      <Project>{76ca949b-c65e-497b-aa48-8651e3306436}</Project>
-      <Name>Ghostware.GPSDLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

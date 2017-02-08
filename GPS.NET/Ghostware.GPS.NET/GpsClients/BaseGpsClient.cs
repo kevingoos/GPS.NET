@@ -3,7 +3,7 @@ using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 using Ghostware.GPS.NET.Models.Events;
 
-namespace Ghostware.GPS.NET.GpsClients.Interfaces
+namespace Ghostware.GPS.NET.GpsClients
 {
     public abstract class BaseGpsClient
     {

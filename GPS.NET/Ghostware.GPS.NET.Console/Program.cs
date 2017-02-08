@@ -30,8 +30,8 @@ namespace Ghostware.GPS.NET.Console
                 ProxyAddress = "proxy",
                 ProxyPort = 80,
                 IsProxyAuthManual = true,
-                Username = "EXJ508",
-                Password = "Xlssx531"
+                ProxyUsername = "EXJ508",
+                ProxyPassword = "Xlssx531"
             });
 
             _gpsService.Client.GpsCallbackEvent += GpsdServiceOnLocationChanged;

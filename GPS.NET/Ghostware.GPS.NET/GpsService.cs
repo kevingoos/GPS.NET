@@ -1,7 +1,7 @@
 ﻿using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Exceptions;
 using Ghostware.GPS.NET.Factories;
-using Ghostware.GPS.NET.GpsClients.Interfaces;
+using Ghostware.GPS.NET.GpsClients;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 
 namespace Ghostware.GPS.NET

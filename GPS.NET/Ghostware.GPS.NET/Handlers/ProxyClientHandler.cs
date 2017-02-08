@@ -3,30 +3,31 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using Ghostware.GPS.NET.Models.ConnectionData;
 
 namespace Ghostware.GPS.NET.Handlers
 {
     public static class ProxyClientHandler
     {
-        public static TcpClient GetTcpClient(string serverAddress, string serverPort, string proxyAddress, int proxyPort, bool isProxyAuthenticationEnabled = false, string proxyUsername = "", string proxyPassword = "")
+        public static TcpClient GetTcpClient(GpsdData data)
         {
             var uriBuilder = new UriBuilder
             {
                 Scheme = Uri.UriSchemeHttp,
-                Host = proxyAddress,
-                Port = proxyPort
+                Host = data.ProxyAddress,
+                Port = data.ProxyPort
             };
 
             var proxyUri = uriBuilder.Uri;
-            var request = WebRequest.Create("http://" + serverAddress + ":" + serverPort);
+            var request = WebRequest.Create("http://" + data.Address + ":" + data.Port);
             var webProxy = new WebProxy(proxyUri);
 
             request.Proxy = webProxy;
             request.Method = "CONNECT";
 
-            if (isProxyAuthenticationEnabled)
+            if (data.IsProxyAuthManual)
             {
-                webProxy.Credentials = new NetworkCredential(proxyUsername, proxyPassword);
+                webProxy.Credentials = new NetworkCredential(data.ProxyUsername, data.ProxyPassword);
             }
             else
             {

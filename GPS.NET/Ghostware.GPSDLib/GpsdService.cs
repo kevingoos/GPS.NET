@@ -32,7 +32,6 @@ namespace Ghostware.GPSDLib
         private SecureString _proxyPassword;
 
         private GpsLocation _previousGpsLocation;
-
         
         private int _retryReadCount;
 

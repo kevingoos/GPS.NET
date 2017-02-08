@@ -3,7 +3,7 @@ using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 
 namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public struct FileGpsData : IGpsData
+    public class FileGpsData : IGpsData
     {
         public string FileLocation { get; set; }
         public int TickTime { get; set; }
