@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ghostware.GPSDLib.Models;
 using Ghostware.NMEAParser.NMEAMessages;
 
@@ -17,8 +13,6 @@ namespace Ghostware.GPS.NET.Models.Events
 
         public double Measure { get; set; }
         public bool IsMeasureCalculated { get; set; }
-
-        public string RawData { get; set; }
 
         public GpsDataEventArgs(GpsLocation gpsLocation)
         {

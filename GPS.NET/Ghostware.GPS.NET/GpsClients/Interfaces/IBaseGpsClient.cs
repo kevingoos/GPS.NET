@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 using Ghostware.GPS.NET.Models.Events;
@@ -18,6 +17,7 @@ namespace Ghostware.GPS.NET.GpsClients.Interfaces
         #region Event handlers
 
         public event EventHandler<GpsDataEventArgs> GpsCallbackEvent;
+        public event EventHandler<string> RawGpsCallbackEvent;
 
         #endregion
 
@@ -32,9 +32,9 @@ namespace Ghostware.GPS.NET.GpsClients.Interfaces
 
         #region Connect and Disconnect
 
-        public abstract Task<bool> Connect(IGpsData connectionData);
+        public abstract bool Connect(IGpsData connectionData);
 
-        public abstract Task<bool> Disconnect();
+        public abstract bool Disconnect();
 
         #endregion
 
@@ -43,6 +43,12 @@ namespace Ghostware.GPS.NET.GpsClients.Interfaces
         protected virtual void OnGpsDataReceived(GpsDataEventArgs e)
         {
             var handler = GpsCallbackEvent;
+            handler?.Invoke(this, e);
+        }
+
+        protected virtual void OnRawGpsDataReceived(string e)
+        {
+            var handler = RawGpsCallbackEvent;
             handler?.Invoke(this, e);
         }
 

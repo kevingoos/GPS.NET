@@ -8,7 +8,7 @@ namespace Ghostware.GPS.NET.Factories
 {
     public static class GpsClientFactory
     {
-        public static IBaseGpsClient Create(GpsType type)
+        public static BaseGpsClient Create(GpsType type)
         {
             switch (type)
             {

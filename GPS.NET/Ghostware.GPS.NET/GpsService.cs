@@ -8,26 +8,26 @@ namespace Ghostware.GPS.NET
 {
     public class GpsService
     {
-        private readonly IBaseGpsClient _client;
+        public readonly BaseGpsClient Client;
 
         public GpsService(GpsType gpsServiceType)
         {
-            _client = GpsClientFactory.Create(gpsServiceType);
+            Client = GpsClientFactory.Create(gpsServiceType);
         }
 
         public void Connect(IGpsData gpsData)
         {
-            if (GpsDataFactory.GetDataType(_client.GpsType) != gpsData.GetType())
+            if (GpsDataFactory.GetDataType(Client.GpsType) != gpsData.GetType())
             {
                 throw new InvalidDataTypeException();
             }
 
-            _client.Connect(gpsData);
+            Client.Connect(gpsData);
         }
 
         public void Disconnect()
         {
-            _client.Disconnect();
+            Client.Disconnect();
         }
     }
 }

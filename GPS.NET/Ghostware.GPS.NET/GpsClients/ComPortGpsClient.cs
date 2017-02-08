@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
-using System.Threading.Tasks;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.GpsClients.Interfaces;
 using Ghostware.GPS.NET.Models.ConnectionData;
@@ -33,7 +32,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public override async Task<bool> Connect(IGpsData connectionData)
+        public override bool Connect(IGpsData connectionData)
         {
             var data = (ComPortData)connectionData;
 
@@ -50,9 +49,10 @@ namespace Ghostware.GPS.NET.GpsClients
             {
                 Thread.Sleep(1000);
             }
+            return true;
         }
 
-        public override async Task<bool> Disconnect()
+        public override bool Disconnect()
         {
             _serialPort.Close();
             return true;
@@ -66,7 +66,9 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             try
             {
-                var result = _parser.Parse(_serialPort.ReadExisting());
+                var readString = _serialPort.ReadExisting();
+                OnRawGpsDataReceived(readString);
+                var result = _parser.Parse(readString);
                 if (typeof(GprmcMessage) == result.GetType())
                 {
                     OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)result));

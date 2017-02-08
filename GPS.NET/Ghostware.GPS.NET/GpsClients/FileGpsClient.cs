@@ -29,7 +29,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public override async Task<bool> Connect(IGpsData connectionData)
+        public override bool Connect(IGpsData connectionData)
         {
             var data = (FileGpsData)connectionData;
             
@@ -43,6 +43,7 @@ namespace Ghostware.GPS.NET.GpsClients
                 {
                     try
                     {
+                        OnRawGpsDataReceived(line);
                         var result = parser.Parse(line);
                         switch (data.FileType)
                         {
@@ -62,18 +63,20 @@ namespace Ghostware.GPS.NET.GpsClients
                         }
                         Thread.Sleep(data.TickTime);
                     }
-                    catch (UnknownTypeException ex)
+                    catch (UnknownTypeException)
                     {
-                        Console.WriteLine(ex.Message);
+                        Disconnect();
+                        throw;
                     }
                 }
-                Disconnect();
+                return true;
             }
         }
 
-        public override async Task<bool> Disconnect()
+        public override bool Disconnect()
         {
             IsRunning = false;
+            return true;
         }
 
         #endregion

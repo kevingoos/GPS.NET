@@ -19,12 +19,14 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public override async Task<bool> Connect(IGpsData connectionData)
+        public override bool Connect(IGpsData connectionData)
         {
             var data = (WindowsLocationApiData)connectionData;
+
+            return false;
         }
 
-        public override async Task<bool> Disconnect()
+        public override bool Disconnect()
         {
             throw new System.NotImplementedException();
         }

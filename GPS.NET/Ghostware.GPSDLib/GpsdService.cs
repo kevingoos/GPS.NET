@@ -133,6 +133,7 @@ namespace Ghostware.GPSDLib
                     {
                         if (_retryReadCount == 0)
                         {
+                            Disconnect();
                             throw new ConnectionLostException();
                         }
                         _retryReadCount--;
@@ -141,14 +142,17 @@ namespace Ghostware.GPSDLib
 
                     var message = _gpsdDataParser.GetGpsData(gpsData);
                     var gpsLocation = message as GpsLocation;
-                    if (gpsLocation == null || (_previousGpsLocation != null && gpsLocation.Time.Subtract(new TimeSpan(0, 0, 0, 0, ReadFrequenty)) <= _previousGpsLocation.Time))
+                    if (gpsLocation == null ||
+                        (_previousGpsLocation != null &&
+                         gpsLocation.Time.Subtract(new TimeSpan(0, 0, 0, 0, ReadFrequenty)) <= _previousGpsLocation.Time))
                         continue;
                     OnLocationChanged?.Invoke(this, gpsLocation);
                     _previousGpsLocation = gpsLocation;
                 }
                 catch (IOException)
                 {
-                    return;
+                    Disconnect();
+                    throw;
                 }
             }
         }
@@ -170,11 +174,11 @@ namespace Ghostware.GPSDLib
 
         #region Helper Functions
 
-        private void ExecuteGpsdCommand(string command)
+        private async void ExecuteGpsdCommand(string command)
         {
             if (_streamWriter == null) return;
-            _streamWriter.WriteLine(command);
-            _streamWriter.Flush();
+            await _streamWriter.WriteLineAsync(command);
+            await _streamWriter.FlushAsync();
         }
 
         #endregion

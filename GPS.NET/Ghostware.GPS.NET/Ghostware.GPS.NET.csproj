@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\CoordinateConverterUtilities.cs" />
+    <Compile Include="Encryption\StringEncryption.cs" />
+    <Compile Include="Enums\FileType.cs" />
+    <Compile Include="Enums\GpsCoordinateSystem.cs" />
     <Compile Include="Exceptions\InvalidDataTypeException.cs" />
     <Compile Include="Factories\GpsClientFactory.cs" />
     <Compile Include="Factories\GpsDataFactory.cs" />
@@ -59,10 +64,25 @@
     <Compile Include="Models\ConnectionData\GpsdData.cs" />
     <Compile Include="Enums\GpsType.cs" />
     <Compile Include="Models\ConnectionData\WindowsLocationApiData.cs" />
+    <Compile Include="Models\Events\GpsDataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ghostware.GPSDLib\Ghostware.GPSDLib.csproj">
+      <Project>{76CA949B-C65E-497B-AA48-8651E3306436}</Project>
+      <Name>Ghostware.GPSDLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plugins\ETRS89_LAMBERT_UTM_32bits.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\ETRS89_LAMBERT_UTM_64bits.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
