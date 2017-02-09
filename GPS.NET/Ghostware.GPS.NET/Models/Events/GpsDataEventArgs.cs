@@ -11,9 +11,6 @@ namespace Ghostware.GPS.NET.Models.Events
 
         public double Speed { get; set; }
 
-        public double Measure { get; set; }
-        public bool IsMeasureCalculated { get; set; }
-
         public GpsDataEventArgs(GpsLocation gpsLocation)
         {
             Latitude = gpsLocation.Latitude;
@@ -26,6 +23,11 @@ namespace Ghostware.GPS.NET.Models.Events
             Latitude = gpsLocation.Latitude;
             Longitude = gpsLocation.Longitude;
             Speed = gpsLocation.Speed;
+        }
+
+        public override string ToString()
+        {
+            return $"Latitude: {Latitude} - Longitude: {Longitude} - Speed: {Speed}";
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿<Application x:Class="Ghostware.GPSDTestApplication.App"
+﻿<Application x:Class="Ghostware.GPS.NET.GPSDWpfApplication.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Ghostware.GPSDTestApplication"
+             xmlns:local="clr-namespace:Ghostware.GPS.NET.GPSDWpfApplication"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

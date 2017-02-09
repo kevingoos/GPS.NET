@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ghostware.GPSDTestApplication.Properties
+namespace Ghostware.GPS.NET.GPSDWpfApplication.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace Ghostware.GPSDTestApplication.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ghostware.GPSDTestApplication.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ghostware.GPS.NET.GPSDWpfApplication.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -48,7 +48,12 @@ namespace Ghostware.GPS.NET.GpsClients
 
             _gpsdDataParser = new GpsdDataParser();
 
-            var gpsData = _streamReader.ReadLine();
+            var gpsData = "";
+            while (string.IsNullOrEmpty(gpsData))
+            {
+                gpsData = _streamReader.ReadLine();
+            }
+
             var message = _gpsdDataParser.GetGpsData(gpsData);
             var version = message as GpsdVersion;
             if (version == null) return false;

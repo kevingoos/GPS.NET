@@ -1,4 +1,6 @@
-﻿namespace Ghostware.GPS.NET.Models.GpsdModels
+﻿using System.Runtime.Serialization;
+
+namespace Ghostware.GPS.NET.Models.GpsdModels
 {
     [DataContract]
     public class GpsdVersion

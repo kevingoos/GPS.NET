@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D75428E8-CF1A-4B5A-8ECC-0F82C8A43DFC}</ProjectGuid>
+    <ProjectGuid>{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ghostware.GPS.NET.Console</RootNamespace>
-    <AssemblyName>Ghostware.GPS.NET.Console</AssemblyName>
+    <RootNamespace>Ghostware.GPS.NET.GPSDConsole</RootNamespace>
+    <AssemblyName>Ghostware.GPS.NET.GPSDConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,12 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ghostware.GPS.NET\Ghostware.GPS.NET.csproj">
-      <Project>{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}</Project>
-      <Name>Ghostware.GPS.NET</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

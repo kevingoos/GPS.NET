@@ -42,14 +42,12 @@ namespace Ghostware.GPS.NET.GpsClients
 
         protected virtual void OnGpsDataReceived(GpsDataEventArgs e)
         {
-            var handler = GpsCallbackEvent;
-            handler?.Invoke(this, e);
+            GpsCallbackEvent?.Invoke(this, e);
         }
 
         protected virtual void OnRawGpsDataReceived(string e)
         {
-            var handler = RawGpsCallbackEvent;
-            handler?.Invoke(this, e);
+            RawGpsCallbackEvent?.Invoke(this, e);
         }
 
         #endregion

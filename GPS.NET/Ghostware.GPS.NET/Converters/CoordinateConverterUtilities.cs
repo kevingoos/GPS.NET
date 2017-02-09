@@ -14,16 +14,13 @@ namespace Ghostware.GPS.NET.Converters
 
         //Import the dll with the functions to calculate lambert coordinates
         [DllImport(DllImport, SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int GeoETRS89ToLambert72(double Xi, double Yi, double Zi, ref double xo, ref double yo,
-            ref double Ho);
+        public static extern int GeoETRS89ToLambert72(double Xi, double Yi, double Zi, ref double xo, ref double yo, ref double Ho);
 
         [DllImport(DllImport, SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int Lambert72ToLambert08(double Xi, double Yi, double Zi, ref double xo, ref double yo,
-            ref double Ho);
+        public static extern int Lambert72ToLambert08(double Xi, double Yi, double Zi, ref double xo, ref double yo, ref double Ho);
 
         [DllImport(DllImport, SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int Lambert72ToGeoETRS89(double Xi, double Yi, double Zi, ref double xo, ref double yo,
-            ref double Ho);
+        public static extern int Lambert72ToGeoETRS89(double Xi, double Yi, double Zi, ref double xo, ref double yo, ref double Ho);
 
         #endregion
     }

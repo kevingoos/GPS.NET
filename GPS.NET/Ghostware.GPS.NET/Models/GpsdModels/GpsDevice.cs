@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Ghostware.GPS.NET.Models.GpsdModels
 {

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghostware.GPS.NET.Console")]
+[assembly: AssemblyTitle("Ghostware.GPS.NET.GPSDConsole")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Infrabel")]
-[assembly: AssemblyProduct("Ghostware.GPS.NET.Console")]
+[assembly: AssemblyProduct("Ghostware.GPS.NET.GPSDConsole")]
 [assembly: AssemblyCopyright("Copyright © Infrabel 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d75428e8-cf1a-4b5a-8ecc-0f82c8a43dfc")]
+[assembly: Guid("e9ee412e-a30f-4cdf-8030-b6f6d7f1dc7c")]
 
 // Version information for an assembly consists of the following four values:
 //

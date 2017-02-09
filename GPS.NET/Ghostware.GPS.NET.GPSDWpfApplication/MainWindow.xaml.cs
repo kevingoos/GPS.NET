@@ -1,23 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Ghostware.GPSDLib;
-using Ghostware.GPSDLib.Models;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Ghostware.GPS.NET.Enums;
+using Ghostware.GPS.NET.Models.ConnectionData;
+using Ghostware.GPS.NET.Models.Events;
+using Ghostware.GPS.NET.Models.GpsdModels;
 
-namespace Ghostware.GPSDTestApplication
+namespace Ghostware.GPS.NET.GPSDWpfApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
         private static StreamWriter _writer;
-        private static GpsdService _gpsdService;
+        private static GpsService _gpsdService;
 
         public MainWindow()
         {
@@ -29,32 +40,45 @@ namespace Ghostware.GPSDTestApplication
             if (_gpsdService != null && _gpsdService.IsRunning) return;
 
             //_gpsdService = new GpsdService("***.***.***.***", 80);
-            _gpsdService = new GpsdService("127.0.0.1", 80);
+            _gpsdService = new GpsService(GpsType.Gpsd);
 
             //_gpsdService.SetProxy("proxy", 80);
             //_gpsdService.SetProxyAuthentication("*****", "*****");
 
             _writer = new StreamWriter("testFile1.nmea");
 
-            _gpsdService.OnRawLocationChanged += GpsdServiceOnRawLocationChanged;
-            _gpsdService.OnLocationChanged += GpsdServiceOnLocationChanged;
+            _gpsdService.RegisterRawDataEvent(GpsdServiceOnRawLocationChanged);
+            _gpsdService.RegisterDataEvent(GpsdServiceOnLocationChanged);
 
             var task = Task.Run(() =>
             {
-                Retry.Do(_gpsdService.Connect, TimeSpan.FromSeconds(1));
+                Retry.Do(ConnectToGpsd, TimeSpan.FromSeconds(1));
             });
             task.ContinueWith(t =>
             {
-                if (t.Exception != null) return;
-                _gpsdService.StartGpsReading();
-            });
-            task.ContinueWith(t =>
-            {
-                MessageBox.Show(t.Exception?.ToString(), "Test", MessageBoxButton.OK);
+                MessageBox.Show(t.Exception?.ToString(), "Exception", MessageBoxButton.OK);
             }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private void GpsdServiceOnLocationChanged(object source, GpsLocation e)
+        public bool ConnectToGpsd()
+        {
+            var info = new GpsdInfo()
+            {
+                Address = "***.* **.* **.***",
+                //Default
+                //Port = 2947,
+                //IsProxyEnabled = true,
+                //ProxyAddress = "proxy",
+                //ProxyPort = 80,
+                //IsProxyAuthManual = true,
+                //ProxyUsername = "*****",
+                //ProxyPassword = "*****"
+            };
+
+            return _gpsdService.Connect(info);
+        }
+
+        private void GpsdServiceOnLocationChanged(object source, GpsDataEventArgs e)
         {
             Dispatcher.Invoke(() =>
             {

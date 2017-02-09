@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ghostware.GPSDTestApplication.Properties
+namespace Ghostware.GPS.NET.GPSDWpfApplication.Properties
 {
 
 

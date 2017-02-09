@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ghostware.GPSDTestApplication")]
+[assembly: AssemblyTitle("Ghostware.GPS.NET.GPSDWpfApplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Infrabel")]
-[assembly: AssemblyProduct("Ghostware.GPSDTestApplication")]
-[assembly: AssemblyCopyright("Copyright © Infrabel 2016")]
+[assembly: AssemblyProduct("Ghostware.GPS.NET.GPSDWpfApplication")]
+[assembly: AssemblyCopyright("Copyright © Infrabel 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

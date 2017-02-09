@@ -1,10 +1,9 @@
 ﻿using System.Runtime.InteropServices;
-using System.Security;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.Events;
 
-namespace Ghostware.GPS.NET.Console
+namespace Ghostware.GPS.NET.GPSDConsole
 {
     public class Program
     {
@@ -22,19 +21,20 @@ namespace Ghostware.GPS.NET.Console
             SetConsoleCtrlHandler(_eventHandler, true);
 
             _gpsService = new GpsService(GpsType.Gpsd);
-            _gpsService.Connect(new GpsdData()
-            {
-                Address = "178.50.19.81",
-                Port = 80,
-                IsProxyEnabled = true,
-                ProxyAddress = "proxy",
-                ProxyPort = 80,
-                IsProxyAuthManual = true,
-                ProxyUsername = "EXJ508",
-                ProxyPassword = "Xlssx531"
-            });
 
-            _gpsService.Client.GpsCallbackEvent += GpsdServiceOnLocationChanged;
+            _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
+            _gpsService.Connect(new GpsdInfo()
+            {
+                Address = "***.* **.* **.***",
+                //Default
+                //Port = 2947,
+                //IsProxyEnabled = true,
+                //ProxyAddress = "proxy",
+                //ProxyPort = 80,
+                //IsProxyAuthManual = true,
+                //ProxyUsername = "*****",
+                //ProxyPassword = "*****"
+            });
         }
 
         private static void GpsdServiceOnLocationChanged(object sender, GpsDataEventArgs e)
@@ -44,8 +44,7 @@ namespace Ghostware.GPS.NET.Console
 
         private static bool ExitHandler()
         {
-            _gpsService?.Disconnect();
-            return true;
+            return _gpsService == null || _gpsService.Disconnect();
         }
     }
 }

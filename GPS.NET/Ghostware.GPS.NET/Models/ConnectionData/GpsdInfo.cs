@@ -4,10 +4,10 @@ using Ghostware.GPS.NET.Models.GpsdModels;
 
 namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public class GpsdData : IGpsData
+    public class GpsdInfo : IGpsInfo
     {
         public string Address { get; set; }
-        public int Port { get; set; }
+        public int Port { get; set; } = 2947;
 
         public bool IsProxyEnabled { get; set; }
 

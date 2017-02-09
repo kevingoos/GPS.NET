@@ -1,4 +1,7 @@
-﻿namespace Ghostware.GPS.NET.Models.GpsdModels
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
+
+namespace Ghostware.GPS.NET.Models.GpsdModels
 {
     [DataContract]
     public class GpsdOptions

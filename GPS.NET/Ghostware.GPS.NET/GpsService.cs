@@ -1,33 +1,77 @@
-﻿using Ghostware.GPS.NET.Enums;
+﻿using System;
+using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Exceptions;
 using Ghostware.GPS.NET.Factories;
 using Ghostware.GPS.NET.GpsClients;
 using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET
 {
     public class GpsService
     {
-        public readonly BaseGpsClient Client;
+        #region Private Properties
+
+        private readonly BaseGpsClient _client;
+
+        #endregion
+
+        #region Public Properties
+
+        public bool IsRunning => _client.IsRunning;
+
+        #endregion
+
+        #region Constructors
 
         public GpsService(GpsType gpsServiceType)
         {
-            Client = GpsClientFactory.Create(gpsServiceType);
+            _client = GpsClientFactory.Create(gpsServiceType);
         }
 
-        public void Connect(IGpsData gpsData)
+        #endregion
+
+        #region Connect and Disconnect
+
+        public bool Connect(IGpsData gpsData)
         {
-            if (GpsDataFactory.GetDataType(Client.GpsType) != gpsData.GetType())
+            if (GpsDataFactory.GetDataType(_client.GpsType) != gpsData.GetType())
             {
                 throw new InvalidDataTypeException();
             }
 
-            Client.Connect(gpsData);
+            return _client.Connect(gpsData);
         }
 
-        public void Disconnect()
+        public bool Disconnect()
         {
-            Client.Disconnect();
+            return _client.Disconnect();
         }
+
+        #endregion
+
+        #region Register Events
+
+        public void RegisterDataEvent(Action<object, GpsDataEventArgs> action)
+        {
+            _client.GpsCallbackEvent += new EventHandler<GpsDataEventArgs>(action);
+        }
+
+        public void RegisterRawDataEvent(Action<object, string> action)
+        {
+            _client.RawGpsCallbackEvent += new EventHandler<string>(action);
+        }
+
+        public void RemoveDataEvent(Action<object, GpsDataEventArgs> action)
+        {
+            _client.GpsCallbackEvent -= new EventHandler<GpsDataEventArgs>(action);
+        }
+
+        public void RemoveRawDataEvent(Action<object, string> action)
+        {
+            _client.RawGpsCallbackEvent -= new EventHandler<string>(action);
+        }
+
+        #endregion
     }
 }
