@@ -26,9 +26,9 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsData connectionData)
+        public override bool Connect(IGpsInfo connectionData)
         {
-            var data = (FileGpsData)connectionData;
+            var data = (FileGpsInfo)connectionData;
             
             IsRunning = true;
             var parser = new NmeaParser();
@@ -58,7 +58,7 @@ namespace Ghostware.GPS.NET.GpsClients
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
-                        Thread.Sleep(data.TickTime);
+                        Thread.Sleep(data.ReadFrequenty);
                     }
                     catch (UnknownTypeException)
                     {

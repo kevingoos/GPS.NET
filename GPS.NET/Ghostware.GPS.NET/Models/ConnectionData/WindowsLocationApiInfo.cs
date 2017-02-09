@@ -2,7 +2,8 @@
 
 namespace Ghostware.GPS.NET.Models.ConnectionData
 {
-    public class WindowsLocationApiData : IGpsData
+    public class WindowsLocationApiInfo : IGpsInfo
     {
+        public int Timeout { get; set; } = 1000;
     }
 }

@@ -22,5 +22,16 @@ namespace Ghostware.GPS.NET.Models.ConnectionData
         public int RetryRead { get; set; } = 3;
 
         public GpsdOptions GpsOptions { get; set; } = GpsdConstants.DefaultGpsdOptions;
+
+        public GpsdInfo()
+        {
+            
+        }
+
+        public GpsdInfo(string address, int port = 2947)
+        {
+            Address = address;
+            Port = port;
+        }
     }
 }

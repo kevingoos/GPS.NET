@@ -39,7 +39,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -57,6 +59,7 @@
     <Compile Include="Enums\GpsCoordinateSystem.cs" />
     <Compile Include="Exceptions\ConnectionLostException.cs" />
     <Compile Include="Exceptions\InvalidDataTypeException.cs" />
+    <Compile Include="Exceptions\NoGpsFoundException.cs" />
     <Compile Include="Exceptions\NotConnectedException.cs" />
     <Compile Include="Exceptions\UnknownTypeException.cs" />
     <Compile Include="Factories\GpsClientFactory.cs" />
@@ -74,12 +77,12 @@
     <Compile Include="Models\GpsdModels\GpsLocation.cs" />
     <Compile Include="Parsers\GpsdDataParser.cs" />
     <Compile Include="GpsService.cs" />
-    <Compile Include="Models\ConnectionData\ComPortData.cs" />
-    <Compile Include="Models\ConnectionData\FileGpsData.cs" />
-    <Compile Include="Models\ConnectionData\Interfaces\IGpsData.cs" />
-    <Compile Include="Models\ConnectionData\GpsdData.cs" />
+    <Compile Include="Models\ConnectionData\ComPortInfo.cs" />
+    <Compile Include="Models\ConnectionData\FileGpsInfo.cs" />
+    <Compile Include="Models\ConnectionData\Interfaces\IGpsInfo.cs" />
+    <Compile Include="Models\ConnectionData\GpsdInfo.cs" />
     <Compile Include="Enums\GpsType.cs" />
-    <Compile Include="Models\ConnectionData\WindowsLocationApiData.cs" />
+    <Compile Include="Models\ConnectionData\WindowsLocationApiInfo.cs" />
     <Compile Include="Models\Events\GpsDataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\ProxyClientHandler.cs" />

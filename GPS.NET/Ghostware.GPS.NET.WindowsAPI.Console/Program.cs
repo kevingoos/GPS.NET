@@ -3,7 +3,7 @@ using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.Events;
 
-namespace Ghostware.GPS.NET.GPSDConsole
+namespace Ghostware.GPS.NET.WindowsAPI.Console
 {
     public class Program
     {
@@ -20,21 +20,10 @@ namespace Ghostware.GPS.NET.GPSDConsole
             _eventHandler += ExitHandler;
             SetConsoleCtrlHandler(_eventHandler, true);
 
-            _gpsService = new GpsService(GpsType.Gpsd);
+            _gpsService = new GpsService(GpsType.WindowsLocationApi);
 
             _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
-            _gpsService.Connect(new GpsdInfo()
-            {
-                Address = "***.* **.* **.***",
-                //Default
-                //Port = 2947,
-                //IsProxyEnabled = true,
-                //ProxyAddress = "proxy",
-                //ProxyPort = 80,
-                //IsProxyAuthManual = true,
-                //ProxyUsername = "*****",
-                //ProxyPassword = "*****"
-            });
+            _gpsService.Connect(new WindowsLocationApiInfo());
 
             System.Console.WriteLine("Press enter to continue...");
             System.Console.ReadKey();

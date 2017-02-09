@@ -24,16 +24,16 @@ namespace Ghostware.GPS.NET.GpsClients
 
         public ComPortGpsClient() : base(GpsType.ComPort)
         {
-            
+
         }
 
         #endregion
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsData connectionData)
+        public override bool Connect(IGpsInfo connectionData)
         {
-            var data = (ComPortData)connectionData;
+            var data = (ComPortInfo)connectionData;
 
             _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 
@@ -41,12 +41,14 @@ namespace Ghostware.GPS.NET.GpsClients
             // is data waiting in the port's buffer
             _serialPort.DataReceived += port_DataReceived;
 
+
             // Begin communications
             _serialPort.Open();
+
             // Enter an application loop to keep this thread alive
             while (_serialPort.IsOpen)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(data.ReadFrequenty);
             }
             return true;
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Device.Location;
 using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.NMEAParser.NMEAMessages;
 
@@ -19,6 +20,13 @@ namespace Ghostware.GPS.NET.Models.Events
         }
 
         public GpsDataEventArgs(GprmcMessage gpsLocation)
+        {
+            Latitude = gpsLocation.Latitude;
+            Longitude = gpsLocation.Longitude;
+            Speed = gpsLocation.Speed;
+        }
+
+        public GpsDataEventArgs(GeoCoordinate gpsLocation)
         {
             Latitude = gpsLocation.Latitude;
             Longitude = gpsLocation.Longitude;

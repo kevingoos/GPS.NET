@@ -32,7 +32,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public abstract bool Connect(IGpsData connectionData);
+        public abstract bool Connect(IGpsInfo connectionData);
 
         public abstract bool Disconnect();
 

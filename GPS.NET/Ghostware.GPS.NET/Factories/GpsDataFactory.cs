@@ -7,10 +7,10 @@ namespace Ghostware.GPS.NET.Factories
 {
     public static class GpsDataFactory
     {
-        public static IGpsData Create(GpsType type)
+        public static IGpsInfo Create(GpsType type)
         {
             var dataType = GetDataType(type);
-            return (IGpsData)Activator.CreateInstance(dataType);
+            return (IGpsInfo)Activator.CreateInstance(dataType);
         }
 
         public static Type GetDataType(GpsType type)
@@ -18,13 +18,13 @@ namespace Ghostware.GPS.NET.Factories
             switch (type)
             {
                 case GpsType.File:
-                    return typeof(FileGpsData);
+                    return typeof(FileGpsInfo);
                 case GpsType.ComPort:
-                    return typeof(ComPortData);
+                    return typeof(ComPortInfo);
                 case GpsType.Gpsd:
-                    return typeof(GpsdData);
+                    return typeof(GpsdInfo);
                 case GpsType.WindowsLocationApi:
-                    return typeof(WindowsLocationApiData);
+                    return typeof(WindowsLocationApiInfo);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

@@ -9,7 +9,7 @@ namespace Ghostware.GPS.NET.Handlers
 {
     public static class ProxyClientHandler
     {
-        public static TcpClient GetTcpClient(GpsdData data)
+        public static TcpClient GetTcpClient(GpsdInfo data)
         {
             var uriBuilder = new UriBuilder
             {

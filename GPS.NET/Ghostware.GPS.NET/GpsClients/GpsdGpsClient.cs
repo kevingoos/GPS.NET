@@ -38,9 +38,9 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsData connectionData)
+        public override bool Connect(IGpsInfo connectionData)
         {
-            var data = (GpsdData)connectionData;
+            var data = (GpsdInfo)connectionData;
 
             _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);
             _streamReader = new StreamReader(_client.GetStream());
@@ -64,7 +64,7 @@ namespace Ghostware.GPS.NET.GpsClients
             return true;
         }
 
-        public void StartGpsReading(GpsdData data)
+        public void StartGpsReading(GpsdInfo data)
         {
             if (_streamReader == null || !_client.Connected) throw new NotConnectedException();
 

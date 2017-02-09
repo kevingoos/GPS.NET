@@ -33,7 +33,7 @@ namespace Ghostware.GPS.NET
 
         #region Connect and Disconnect
 
-        public bool Connect(IGpsData gpsData)
+        public bool Connect(IGpsInfo gpsData)
         {
             if (GpsDataFactory.GetDataType(_client.GpsType) != gpsData.GetType())
             {
