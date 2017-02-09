@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GPS.NET</id>
+    <version>1.0.0</version>
+    <title>GPS.NET</title>
+    <authors>Kevin Goos</authors>
+    <owners>Kevin Goos</owners>
+    <projectUrl>https://github.com/GhostwareDev/GPS.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library that contains functionality to connect with different types of gps services.</description>
+    <releaseNotes>
+      v1.0.0:
+      --------
+      - Initial release.
+    </releaseNotes>
+    <copyright>Copyright © Kevin Goos 2017</copyright>
+	<tags>GPS</tags>
+  </metadata>
+</package>
