@@ -79,12 +79,12 @@
     <Compile Include="Models\GpsdModels\GpsLocation.cs" />
     <Compile Include="Parsers\GpsdDataParser.cs" />
     <Compile Include="GpsService.cs" />
-    <Compile Include="Models\ConnectionData\ComPortInfo.cs" />
-    <Compile Include="Models\ConnectionData\FileGpsInfo.cs" />
-    <Compile Include="Models\ConnectionData\Interfaces\IGpsInfo.cs" />
-    <Compile Include="Models\ConnectionData\GpsdInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\ComPortInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\FileGpsInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\BaseGpsInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\GpsdInfo.cs" />
     <Compile Include="Enums\GpsType.cs" />
-    <Compile Include="Models\ConnectionData\WindowsLocationApiInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\WindowsLocationApiInfo.cs" />
     <Compile Include="Models\Events\GpsDataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\ProxyClientHandler.cs" />

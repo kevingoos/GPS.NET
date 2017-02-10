@@ -1,24 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
-using Ghostware.GPS.NET.Models.GpsdModels;
 
 namespace Ghostware.GPS.NET.GPSDWpfApplication
 {
@@ -39,29 +26,6 @@ namespace Ghostware.GPS.NET.GPSDWpfApplication
         {
             if (_gpsdService != null && _gpsdService.IsRunning) return;
 
-            //_gpsdService = new GpsdService("***.***.***.***", 80);
-            _gpsdService = new GpsService(GpsType.Gpsd);
-
-            //_gpsdService.SetProxy("proxy", 80);
-            //_gpsdService.SetProxyAuthentication("*****", "*****");
-
-            _writer = new StreamWriter("testFile1.nmea");
-
-            _gpsdService.RegisterRawDataEvent(GpsdServiceOnRawLocationChanged);
-            _gpsdService.RegisterDataEvent(GpsdServiceOnLocationChanged);
-
-            var task = Task.Run(() =>
-            {
-                Retry.Do(ConnectToGpsd, TimeSpan.FromSeconds(1));
-            });
-            task.ContinueWith(t =>
-            {
-                MessageBox.Show(t.Exception?.ToString(), "Exception", MessageBoxButton.OK);
-            }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        public bool ConnectToGpsd()
-        {
             var info = new GpsdInfo()
             {
                 Address = "***.* **.* **.***",
@@ -74,8 +38,20 @@ namespace Ghostware.GPS.NET.GPSDWpfApplication
                 //ProxyUsername = "*****",
                 //ProxyPassword = "*****"
             };
+            _gpsdService = new GpsService(info);
+            _writer = new StreamWriter("testFile1.nmea");
 
-            return _gpsdService.Connect(info);
+            _gpsdService.RegisterRawDataEvent(GpsdServiceOnRawLocationChanged);
+            _gpsdService.RegisterDataEvent(GpsdServiceOnLocationChanged);
+
+            var task = Task.Run(() =>
+            {
+                Retry.Do(_gpsdService.Connect, TimeSpan.FromSeconds(1));
+            });
+            task.ContinueWith(t =>
+            {
+                MessageBox.Show(t.Exception?.ToString(), "Exception", MessageBoxButton.OK);
+            }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void GpsdServiceOnLocationChanged(object source, GpsDataEventArgs e)

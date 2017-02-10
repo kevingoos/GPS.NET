@@ -3,13 +3,12 @@ using System.IO;
 using System.Net.Sockets;
 using Ghostware.GPS.NET.Constants;
 using Ghostware.GPS.NET.Enums;
+using Ghostware.GPS.NET.Exceptions;
 using Ghostware.GPS.NET.Handlers;
-using Ghostware.GPS.NET.Models.ConnectionData;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.GPS.NET.Parsers;
-using Ghostware.GPSDLib.Exceptions;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
@@ -29,18 +28,21 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Constructors
 
-        public GpsdGpsClient() : base(GpsType.Gpsd)
+        public GpsdGpsClient(GpsdInfo connectionData) : base(GpsType.Gpsd, connectionData)
         {
+        }
 
+        public GpsdGpsClient(BaseGpsInfo connectionData) : base(GpsType.Gpsd, connectionData)
+        {
         }
 
         #endregion
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsInfo connectionData)
+        public override bool Connect()
         {
-            var data = (GpsdInfo)connectionData;
+            var data = (GpsdInfo)GpsInfo;
 
             OnGpsStatusChanged(GpsStatus.Connecting);
             _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);

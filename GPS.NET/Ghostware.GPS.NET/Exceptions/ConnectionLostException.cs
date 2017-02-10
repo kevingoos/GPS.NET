@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ghostware.GPSDLib.Exceptions
+namespace Ghostware.GPS.NET.Exceptions
 {
     public class ConnectionLostException : Exception
     {

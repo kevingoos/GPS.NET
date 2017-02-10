@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Device.Location;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET.GpsClients
@@ -17,18 +16,21 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Constructors
 
-        public WindowsLocationApiGpsClient() : base(GpsType.WindowsLocationApi)
+        public WindowsLocationApiGpsClient(WindowsLocationApiInfo connectionData) : base(GpsType.WindowsLocationApi, connectionData)
         {
+        }
 
+        public WindowsLocationApiGpsClient(BaseGpsInfo connectionData) : base(GpsType.WindowsLocationApi, connectionData)
+        {
         }
 
         #endregion
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsInfo connectionData)
+        public override bool Connect()
         {
-            var data = (WindowsLocationApiInfo)connectionData;
+            var data = (WindowsLocationApiInfo)GpsInfo;
             _watcher = new GeoCoordinateWatcher();
 
             _watcher.PositionChanged += WatcherOnPositionChanged;

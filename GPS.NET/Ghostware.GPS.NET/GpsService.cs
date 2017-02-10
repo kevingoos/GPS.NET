@@ -1,9 +1,8 @@
 ﻿using System;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Exceptions;
 using Ghostware.GPS.NET.Factories;
 using Ghostware.GPS.NET.GpsClients;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET
@@ -24,6 +23,11 @@ namespace Ghostware.GPS.NET
 
         #region Constructors
 
+        public GpsService(BaseGpsInfo baseGpsData)
+        {
+            _client = GpsClientFactory.Create(baseGpsData);
+        }
+
         public GpsService(GpsType gpsServiceType)
         {
             _client = GpsClientFactory.Create(gpsServiceType);
@@ -33,14 +37,9 @@ namespace Ghostware.GPS.NET
 
         #region Connect and Disconnect
 
-        public bool Connect(IGpsInfo gpsData)
+        public bool Connect()
         {
-            if (GpsDataFactory.GetDataType(_client.GpsType) != gpsData.GetType())
-            {
-                throw new InvalidDataTypeException();
-            }
-
-            return _client.Connect(gpsData);
+            return _client.Connect();
         }
 
         public bool Disconnect()

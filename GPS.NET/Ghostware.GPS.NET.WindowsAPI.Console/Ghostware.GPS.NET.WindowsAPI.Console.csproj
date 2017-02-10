@@ -49,7 +49,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RemoteDebug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>\\TB150018310\RemoteDebug\</OutputPath>
+    <OutputPath>\\TB150018310\RemoteDebug\GPS.NET\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
