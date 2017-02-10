@@ -1,5 +1,6 @@
 @echo off
-ECHO "IMPORTANT TO RUN THIS IN THE DEVELOPER COMMAND PROMPT!!!"
+ECHO IMPORTANT TO BUILD IN RELEASE MODE RUN THIS IN THE DEVELOPER COMMAND PROMPT!!!
+ECHO ------------------------------------------------------------------------------
 set /p nugetLocation="Enter nuget location [specified in path variable]: "
 set /p exportLocation="Enter export location [userprofile\Desktop\NugetRelease\]: "
 
