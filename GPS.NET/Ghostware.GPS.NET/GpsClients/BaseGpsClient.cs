@@ -10,7 +10,7 @@ namespace Ghostware.GPS.NET.GpsClients
         #region Properties
 
         public GpsType GpsType { get; }
-        protected bool IsRunning { get; set; }
+        public bool IsRunning { get; set; }
 
         #endregion
         

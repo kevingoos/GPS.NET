@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>GPS.NET</id>
+    <id>Ghostware.GPS.NET</id>
     <version>1.0.0</version>
-    <title>GPS.NET</title>
+    <title>Ghostware.GPS.NET</title>
     <authors>Kevin Goos</authors>
     <owners>Kevin Goos</owners>
     <projectUrl>https://github.com/GhostwareDev/GPS.NET</projectUrl>

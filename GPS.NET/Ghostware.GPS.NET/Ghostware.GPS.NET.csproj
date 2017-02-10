@@ -57,6 +57,7 @@
     <Compile Include="Encryption\StringEncryption.cs" />
     <Compile Include="Enums\FileType.cs" />
     <Compile Include="Enums\GpsCoordinateSystem.cs" />
+    <Compile Include="Enums\GpsStatus.cs" />
     <Compile Include="Exceptions\ConnectionLostException.cs" />
     <Compile Include="Exceptions\InvalidDataTypeException.cs" />
     <Compile Include="Exceptions\NoGpsFoundException.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="GpsClients\GpsdGpsClient.cs" />
     <Compile Include="GpsClients\BaseGpsClient.cs" />
     <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
+    <Compile Include="Models\Events\GpsStatusEventArgs.cs" />
     <Compile Include="Models\GpsdModels\DataClassType.cs" />
     <Compile Include="Models\GpsdModels\GpsDevice.cs" />
     <Compile Include="Models\GpsdModels\GpsDevices.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Handlers\ProxyClientHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GPS.NET.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

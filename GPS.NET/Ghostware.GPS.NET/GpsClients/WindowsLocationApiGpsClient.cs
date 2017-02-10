@@ -55,8 +55,6 @@ namespace Ghostware.GPS.NET.GpsClients
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            
         }
 
         private void WatcherOnPositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
