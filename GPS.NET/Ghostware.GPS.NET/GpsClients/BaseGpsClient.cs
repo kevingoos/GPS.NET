@@ -1,4 +1,5 @@
 ﻿using System;
+using Ghostware.GPS.NET.Converters;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
@@ -48,7 +49,12 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             if (GpsInfo.CoordinateSystem == GpsCoordinateSystem.Lambert72)
             {
-                
+                var x = 0.0d;
+                var y = 0.0d;
+                var h = 0.0d;
+                CoordinateConverterUtilities.GeoETRS89ToLambert72(e.Latitude, e.Longitude, 0, ref x, ref y, ref h);
+                e.Latitude = x;
+                e.Longitude = y;
             }
 
             GpsCallbackEvent?.Invoke(this, e);
