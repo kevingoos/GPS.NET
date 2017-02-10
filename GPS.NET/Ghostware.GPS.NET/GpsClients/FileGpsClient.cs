@@ -29,13 +29,15 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Connect(IGpsInfo connectionData)
         {
             var data = (FileGpsInfo)connectionData;
-            
+
+            OnGpsStatusChanged(GpsStatus.Connecting);
             IsRunning = true;
             var parser = new NmeaParser();
             var gpsdDataParser = new GpsdDataParser();
             using (var streamReader = File.OpenText(data.FileLocation))
             {
                 string line;
+                OnGpsStatusChanged(GpsStatus.Connected);
                 while (IsRunning && (line = streamReader.ReadLine()) != null)
                 {
                     try
@@ -73,6 +75,7 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Disconnect()
         {
             IsRunning = false;
+            OnGpsStatusChanged(GpsStatus.Disabled);
             return true;
         }
 

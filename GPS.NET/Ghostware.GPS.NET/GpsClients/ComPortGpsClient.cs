@@ -35,6 +35,7 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (ComPortInfo)connectionData;
 
+            OnGpsStatusChanged(GpsStatus.Connecting);
             _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 
             // Attach a method to be called when there
@@ -45,6 +46,7 @@ namespace Ghostware.GPS.NET.GpsClients
             // Begin communications
             _serialPort.Open();
 
+            OnGpsStatusChanged(GpsStatus.Connected);
             // Enter an application loop to keep this thread alive
             while (_serialPort.IsOpen)
             {
@@ -56,6 +58,7 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Disconnect()
         {
             _serialPort.Close();
+            OnGpsStatusChanged(GpsStatus.Disabled);
             return true;
         }
 

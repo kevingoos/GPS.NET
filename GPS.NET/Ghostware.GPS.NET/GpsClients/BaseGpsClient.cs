@@ -10,7 +10,7 @@ namespace Ghostware.GPS.NET.GpsClients
         #region Properties
 
         public GpsType GpsType { get; }
-        public bool IsRunning { get; set; }
+        protected bool IsRunning { get; set; }
 
         #endregion
         
@@ -18,6 +18,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         public event EventHandler<GpsDataEventArgs> GpsCallbackEvent;
         public event EventHandler<string> RawGpsCallbackEvent;
+        public event EventHandler<GpsStatus> GpsStatusEvent;
 
         #endregion
 
@@ -48,6 +49,11 @@ namespace Ghostware.GPS.NET.GpsClients
         protected virtual void OnRawGpsDataReceived(string e)
         {
             RawGpsCallbackEvent?.Invoke(this, e);
+        }
+
+        protected virtual void OnGpsStatusChanged(GpsStatus e)
+        {
+            GpsStatusEvent?.Invoke(this, e);
         }
 
         #endregion

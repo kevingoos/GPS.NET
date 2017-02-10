@@ -42,6 +42,7 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (GpsdInfo)connectionData;
 
+            OnGpsStatusChanged(GpsStatus.Connecting);
             _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);
             _streamReader = new StreamReader(_client.GetStream());
             _streamWriter = new StreamWriter(_client.GetStream());
@@ -58,6 +59,8 @@ namespace Ghostware.GPS.NET.GpsClients
             var version = message as GpsdVersion;
             if (version == null) return false;
             ExecuteGpsdCommand(data.GpsOptions.GetCommand());
+            OnGpsStatusChanged(GpsStatus.Connected);
+
 
             StartGpsReading(data);
 
@@ -118,6 +121,7 @@ namespace Ghostware.GPS.NET.GpsClients
             _streamReader?.Close();
             _streamWriter?.Close();
             _client?.Close();
+            OnGpsStatusChanged(GpsStatus.Disabled);
 
             return true;
         }

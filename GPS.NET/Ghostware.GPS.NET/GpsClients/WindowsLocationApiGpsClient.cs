@@ -32,7 +32,31 @@ namespace Ghostware.GPS.NET.GpsClients
             _watcher = new GeoCoordinateWatcher();
 
             _watcher.PositionChanged += WatcherOnPositionChanged;
+            _watcher.StatusChanged += WatcherOnStatusChanged;
             return _watcher.TryStart(false, TimeSpan.FromMilliseconds(data.Timeout));
+        }
+
+        private void WatcherOnStatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Ready:
+                    OnGpsStatusChanged(GpsStatus.Connected);
+                    break;
+                case GeoPositionStatus.Initializing:
+                    OnGpsStatusChanged(GpsStatus.Connecting);
+                    break;
+                case GeoPositionStatus.NoData:
+                    OnGpsStatusChanged(GpsStatus.Connecting);
+                    break;
+                case GeoPositionStatus.Disabled:
+                    OnGpsStatusChanged(GpsStatus.Disabled);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            
         }
 
         private void WatcherOnPositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
