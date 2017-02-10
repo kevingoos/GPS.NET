@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Ghostware.GPS.NET</id>
+    <version>1.0.0</version>
+    <title>Ghostware.GPS.NET</title>
+    <authors>Kevin Goos</authors>
+    <owners>Kevin Goos</owners>
+    <projectUrl>https://github.com/GhostwareDev/GPS.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      A library for connecting in an easy way, to different type of gps devices inside C#.
+
+      The library contains the following ways to connect to gps services:
+      - Using the GPSD service (not officialy supported by GPSD).
+      - Using a gps file.
+      - Using a com port (USB or other).
+      - Using the Windows location API. (Starting from windows 7)
+    </description>
+    <releaseNotes>
+      v1.0.0:
+      --------
+      - Initial release.
+    </releaseNotes>
+    <copyright>Copyright © Kevin Goos 2017</copyright>
+	<tags>GPS</tags>
+  </metadata>
+</package>

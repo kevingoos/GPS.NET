@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET", "Ghostware.GPS.NET\Ghostware.GPS.NET.csproj", "{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.GPSDConsole", "Ghostware.GPS.NET.GPSDConsole\Ghostware.GPS.NET.GPSDConsole.csproj", "{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.GPSDWpfApplication", "Ghostware.GPS.NET.GPSDWpfApplication\Ghostware.GPS.NET.GPSDWpfApplication.csproj", "{0A340CF8-4572-4BCC-8F03-0C5447998928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.WindowsAPI.Console", "Ghostware.GPS.NET.WindowsAPI.Console\Ghostware.GPS.NET.WindowsAPI.Console.csproj", "{B676527F-B0E6-4758-8498-AB37A8CE97C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		RemoteDebug|Any CPU = RemoteDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.RemoteDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}.RemoteDebug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.RemoteDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.RemoteDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.RemoteDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A340CF8-4572-4BCC-8F03-0C5447998928}.RemoteDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.RemoteDebug|Any CPU.ActiveCfg = RemoteDebug|Any CPU
+		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.RemoteDebug|Any CPU.Build.0 = RemoteDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
