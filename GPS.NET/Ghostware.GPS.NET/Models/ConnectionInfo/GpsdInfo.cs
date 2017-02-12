@@ -1,12 +1,11 @@
 ﻿using Ghostware.GPS.NET.Constants;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
 using Ghostware.GPS.NET.Models.GpsdModels;
 
-namespace Ghostware.GPS.NET.Models.ConnectionData
+namespace Ghostware.GPS.NET.Models.ConnectionInfo
 {
-    public class GpsdInfo : IGpsInfo
+    public class GpsdInfo : BaseGpsInfo
     {
-        public string Address { get; set; }
+        public string Address { get; set; } = "127.0.0.1";
         public int Port { get; set; } = 2947;
 
         public bool IsProxyEnabled { get; set; }

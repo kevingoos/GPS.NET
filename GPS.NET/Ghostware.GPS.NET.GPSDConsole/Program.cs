@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET.GPSDConsole
@@ -20,10 +19,7 @@ namespace Ghostware.GPS.NET.GPSDConsole
             _eventHandler += ExitHandler;
             SetConsoleCtrlHandler(_eventHandler, true);
 
-            _gpsService = new GpsService(GpsType.Gpsd);
-
-            _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
-            _gpsService.Connect(new GpsdInfo()
+            var info = new GpsdInfo()
             {
                 Address = "***.* **.* **.***",
                 //Default
@@ -34,7 +30,11 @@ namespace Ghostware.GPS.NET.GPSDConsole
                 //IsProxyAuthManual = true,
                 //ProxyUsername = "*****",
                 //ProxyPassword = "*****"
-            });
+            };
+            _gpsService = new GpsService(info);
+
+            _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
+            _gpsService.Connect();
 
             System.Console.WriteLine("Press enter to continue...");
             System.Console.ReadKey();

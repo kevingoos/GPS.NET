@@ -2,10 +2,10 @@
 <package >
   <metadata>
     <id>Ghostware.GPS.NET</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>Ghostware.GPS.NET</title>
     <authors>Kevin Goos</authors>
-    <owners>Kevin Goos</owners>
+    <owners>Ghostware</owners>
     <projectUrl>https://github.com/GhostwareDev/GPS.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
@@ -18,11 +18,16 @@
       - Using the Windows location API. (Starting from windows 7)
     </description>
     <releaseNotes>
+      v1.0.1:
+      --------
+      - Updated nmea parser
+      - Added conversion to other coordinatesystems
+
       v1.0.0:
       --------
-      - Initial release.
+      - Initial release
     </releaseNotes>
-    <copyright>Copyright © Kevin Goos 2017</copyright>
+    <copyright>Copyright © Ghostware 2017</copyright>
 	<tags>GPS</tags>
   </metadata>
 </package>

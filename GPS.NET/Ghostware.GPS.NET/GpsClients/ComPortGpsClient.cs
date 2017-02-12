@@ -2,8 +2,7 @@
 using System.IO.Ports;
 using System.Threading;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 using Ghostware.NMEAParser;
 using Ghostware.NMEAParser.Exceptions;
@@ -22,19 +21,22 @@ namespace Ghostware.GPS.NET.GpsClients
 
         #region Constructors
 
-        public ComPortGpsClient() : base(GpsType.ComPort)
+        public ComPortGpsClient(ComPortInfo connectionData) : base(GpsType.ComPort, connectionData)
         {
+        }
 
+        public ComPortGpsClient(BaseGpsInfo connectionData) : base(GpsType.ComPort, connectionData)
+        {
         }
 
         #endregion
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsInfo connectionData)
+        public override bool Connect()
         {
-            var data = (ComPortInfo)connectionData;
-
+            var data = (ComPortInfo)GpsInfo;
+            
             OnGpsStatusChanged(GpsStatus.Connecting);
             _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 

@@ -1,6 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET.WindowsAPI.Console
@@ -23,7 +22,7 @@ namespace Ghostware.GPS.NET.WindowsAPI.Console
             _gpsService = new GpsService(GpsType.WindowsLocationApi);
 
             _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
-            _gpsService.Connect(new WindowsLocationApiInfo());
+            _gpsService.Connect();
 
             System.Console.WriteLine("Press enter to continue...");
             System.Console.ReadKey();

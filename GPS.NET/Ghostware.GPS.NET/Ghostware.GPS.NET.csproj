@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ghostware.NMEAParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghostware.NMEAParser.1.0.3\lib\net452\Ghostware.NMEAParser.dll</HintPath>
+      <HintPath>..\packages\Ghostware.NMEAParser.1.0.4\lib\net452\Ghostware.NMEAParser.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -79,12 +79,12 @@
     <Compile Include="Models\GpsdModels\GpsLocation.cs" />
     <Compile Include="Parsers\GpsdDataParser.cs" />
     <Compile Include="GpsService.cs" />
-    <Compile Include="Models\ConnectionData\ComPortInfo.cs" />
-    <Compile Include="Models\ConnectionData\FileGpsInfo.cs" />
-    <Compile Include="Models\ConnectionData\Interfaces\IGpsInfo.cs" />
-    <Compile Include="Models\ConnectionData\GpsdInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\ComPortInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\FileGpsInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\BaseGpsInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\GpsdInfo.cs" />
     <Compile Include="Enums\GpsType.cs" />
-    <Compile Include="Models\ConnectionData\WindowsLocationApiInfo.cs" />
+    <Compile Include="Models\ConnectionInfo\WindowsLocationApiInfo.cs" />
     <Compile Include="Models\Events\GpsDataEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\ProxyClientHandler.cs" />

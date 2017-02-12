@@ -2,8 +2,7 @@
 using System.IO;
 using System.Threading;
 using Ghostware.GPS.NET.Enums;
-using Ghostware.GPS.NET.Models.ConnectionData;
-using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.GPS.NET.Parsers;
@@ -17,24 +16,27 @@ namespace Ghostware.GPS.NET.GpsClients
     {
         #region Constructors
 
-        public FileGpsClient() : base(GpsType.File)
+        public FileGpsClient(FileGpsInfo connectionData) : base(GpsType.File, connectionData)
         {
+        }
 
+        public FileGpsClient(BaseGpsInfo connectionData) : base(GpsType.File, connectionData)
+        {
         }
 
         #endregion
 
         #region Connect and Disconnect
 
-        public override bool Connect(IGpsInfo connectionData)
+        public override bool Connect()
         {
-            var data = (FileGpsInfo)connectionData;
+            var data = (FileGpsInfo)GpsInfo;
 
             OnGpsStatusChanged(GpsStatus.Connecting);
             IsRunning = true;
             var parser = new NmeaParser();
             var gpsdDataParser = new GpsdDataParser();
-            using (var streamReader = File.OpenText(data.FileLocation))
+            using (var streamReader = File.OpenText(data.FilePath))
             {
                 string line;
                 OnGpsStatusChanged(GpsStatus.Connected);

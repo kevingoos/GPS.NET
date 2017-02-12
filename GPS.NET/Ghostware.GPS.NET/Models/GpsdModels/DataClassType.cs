@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Ghostware.GPSDLib.Exceptions;
+using Ghostware.GPS.NET.Exceptions;
 
 namespace Ghostware.GPS.NET.Models.GpsdModels
 {
@@ -26,7 +26,7 @@ namespace Ghostware.GPS.NET.Models.GpsdModels
 
             if (result == null)
             {
-                throw new UnknownTypeException();
+                throw new UnknownTypeException(Class);
             }
 
             return result;

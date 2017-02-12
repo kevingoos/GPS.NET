@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using Ghostware.GPS.NET.Models.ConnectionData;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 
 namespace Ghostware.GPS.NET.Handlers
 {

@@ -1,7 +1,8 @@
 ﻿using System;
 using Ghostware.GPS.NET.Enums;
+using Ghostware.GPS.NET.Exceptions;
 using Ghostware.GPS.NET.GpsClients;
-using Ghostware.GPS.NET.Models;
+using Ghostware.GPS.NET.Models.ConnectionInfo;
 
 namespace Ghostware.GPS.NET.Factories
 {
@@ -12,16 +13,37 @@ namespace Ghostware.GPS.NET.Factories
             switch (type)
             {
                 case GpsType.File:
-                    return new FileGpsClient();
+                    return new FileGpsClient(new FileGpsInfo());
                 case GpsType.ComPort:
-                    return new ComPortGpsClient();
+                    return new ComPortGpsClient(new ComPortInfo());
                 case GpsType.Gpsd:
-                    return new GpsdGpsClient();
+                    return new GpsdGpsClient(new GpsdInfo());
                 case GpsType.WindowsLocationApi:
-                    return new WindowsLocationApiGpsClient();
+                    return new WindowsLocationApiGpsClient(new WindowsLocationApiInfo());
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
+        }
+
+        public static BaseGpsClient Create(BaseGpsInfo baseGpsData)
+        {
+            if (baseGpsData.GetType() == typeof(FileGpsInfo))
+            {
+                return new FileGpsClient(baseGpsData);
+            }
+            if (baseGpsData.GetType() == typeof(ComPortInfo))
+            {
+                return new ComPortGpsClient(baseGpsData);
+            }
+            if (baseGpsData.GetType() == typeof(GpsdGpsClient))
+            {
+                return new GpsdGpsClient(baseGpsData);
+            }
+            if (baseGpsData.GetType() == typeof(WindowsLocationApiInfo))
+            {
+                return new WindowsLocationApiGpsClient(baseGpsData);
+            }
+            throw new UnknownTypeException(baseGpsData.GetType());
         }
     }
 }

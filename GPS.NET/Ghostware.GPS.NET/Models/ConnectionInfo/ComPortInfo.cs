@@ -1,10 +1,8 @@
-﻿using Ghostware.GPS.NET.Models.ConnectionData.Interfaces;
-
-namespace Ghostware.GPS.NET.Models.ConnectionData
+﻿namespace Ghostware.GPS.NET.Models.ConnectionInfo
 {
-    public class ComPortInfo : IGpsInfo
+    public class ComPortInfo : BaseGpsInfo
     {
-        public string ComPort { get; set; }
+        public string ComPort { get; set; } = "ComPort1";
         public int ReadFrequenty { get; set; } = 1000;
 
         public ComPortInfo()
