@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Device.Location;
+using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.NMEAParser.NMEAMessages;
 
@@ -7,11 +8,13 @@ namespace Ghostware.GPS.NET.Models.Events
 {
     public class GpsDataEventArgs : EventArgs
     {
+        public GpsCoordinateSystem CoordinateSystem { get; set; } = GpsCoordinateSystem.GeoEtrs89;
+
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
         public double Speed { get; set; }
-
+       
         public GpsDataEventArgs(GpsLocation gpsLocation)
         {
             Latitude = gpsLocation.Latitude;

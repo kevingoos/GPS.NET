@@ -53,6 +53,7 @@ namespace Ghostware.GPS.NET.GpsClients
                 var y = 0.0d;
                 var h = 0.0d;
                 CoordinateConverterUtilities.GeoETRS89ToLambert72(e.Latitude, e.Longitude, 0, ref x, ref y, ref h);
+                e.CoordinateSystem = GpsCoordinateSystem.Lambert72;
                 e.Latitude = x;
                 e.Longitude = y;
             }

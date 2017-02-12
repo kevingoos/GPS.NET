@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ghostware.NMEAParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghostware.NMEAParser.1.0.3\lib\net452\Ghostware.NMEAParser.dll</HintPath>
+      <HintPath>..\packages\Ghostware.NMEAParser.1.0.4\lib\net452\Ghostware.NMEAParser.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
