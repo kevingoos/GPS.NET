@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Ghostware.GPS.NET</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <title>Ghostware.GPS.NET</title>
     <authors>Kevin Goos</authors>
     <owners>Ghostware</owners>
@@ -18,6 +18,10 @@
       - Using the Windows location API. (Starting from windows 7)
     </description>
     <releaseNotes>
+      v1.0.3:
+      --------
+      - Added support for files using the following format ([Latitude;Longitude], header needs to be included on the first line. (Header names are in the settings))
+
       v1.0.2:
       --------
       - Bugfix: fixed the GpsClientFactory returning wrong type for GPSD
