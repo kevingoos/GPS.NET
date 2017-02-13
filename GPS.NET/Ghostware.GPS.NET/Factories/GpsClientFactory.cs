@@ -35,7 +35,7 @@ namespace Ghostware.GPS.NET.Factories
             {
                 return new ComPortGpsClient(baseGpsData);
             }
-            if (baseGpsData.GetType() == typeof(GpsdGpsClient))
+            if (baseGpsData.GetType() == typeof(GpsdInfo))
             {
                 return new GpsdGpsClient(baseGpsData);
             }

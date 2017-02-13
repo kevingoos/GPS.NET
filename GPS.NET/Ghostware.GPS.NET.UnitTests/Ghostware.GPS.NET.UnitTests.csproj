@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{687F1BB3-0D9A-424D-B1FB-776C2157601E}</ProjectGuid>
+    <ProjectGuid>{53670C74-EF59-43EC-8521-219EF5A95D1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ghostware.GPS.NET.UnitTests</RootNamespace>
@@ -50,8 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Factories\GpsClientFactoryTests.cs" />
+    <Compile Include="Factories\GpsDataFactoryTests.cs" />
+    <Compile Include="Factories\UnkownGpsInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ghostware.GPS.NET\Ghostware.GPS.NET.csproj">
+      <Project>{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}</Project>
+      <Name>Ghostware.GPS.NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

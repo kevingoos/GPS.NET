@@ -21,15 +21,14 @@ namespace Ghostware.GPS.NET.GPSDConsole
 
             var info = new GpsdInfo()
             {
-                Address = "***.* **.* **.***",
-                //Default
-                //Port = 2947,
-                //IsProxyEnabled = true,
-                //ProxyAddress = "proxy",
-                //ProxyPort = 80,
-                //IsProxyAuthManual = true,
-                //ProxyUsername = "*****",
-                //ProxyPassword = "*****"
+                Address = "178.50.250.33",
+                Port = 2947,
+                IsProxyEnabled = true,
+                ProxyAddress = "proxy",
+                ProxyPort = 80,
+                IsProxyAuthManual = true,
+                ProxyUsername = "EXJ508",
+                ProxyPassword = "Xlssx534"
             };
             _gpsService = new GpsService(info);
 
