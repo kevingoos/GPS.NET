@@ -21,6 +21,9 @@
       v1.0.3:
       --------
       - Added support for files using the following format ([Latitude;Longitude], header needs to be included on the first line. (Header names are in the settings))
+      - Added ComPort Readfrequenty, and added 0 as unlimited
+      - Changed GPSD Readfrequenty, and added 0 as unlimited
+      - Added Readfrequenty to the Windows Location API, and added 0 as unlimited
 
       v1.0.2:
       --------

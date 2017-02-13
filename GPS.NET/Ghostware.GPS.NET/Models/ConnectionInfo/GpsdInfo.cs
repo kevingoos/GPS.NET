@@ -17,17 +17,16 @@ namespace Ghostware.GPS.NET.Models.ConnectionInfo
         public string ProxyUsername { get; set; }
         public string ProxyPassword { get; set; }
 
-        public int ReadFrequenty { get; set; } = 1000;
         public int RetryRead { get; set; } = 3;
 
         public GpsdOptions GpsOptions { get; set; } = GpsdConstants.DefaultGpsdOptions;
 
         public GpsdInfo()
         {
-            
+            ReadFrequenty = 0;
         }
 
-        public GpsdInfo(string address, int port = 2947)
+        public GpsdInfo(string address, int port = 2947) : this()
         {
             Address = address;
             Port = port;

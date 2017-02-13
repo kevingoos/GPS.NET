@@ -7,11 +7,9 @@ namespace Ghostware.GPS.NET.Models.ConnectionInfo
         public string FilePath { get; set; } = "test";
         public FileType FileType { get; set; } = FileType.Nmea;
 
-        public int ReadFrequenty { get; set; } = 1000;
-
         public FileGpsInfo()
         {
-            
+            ReadFrequenty = 1000;
         }
 
         public FileGpsInfo(string filePath, FileType fileType = FileType.Nmea, int readFrequenty = 1000)

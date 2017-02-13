@@ -12,6 +12,8 @@ namespace Ghostware.GPS.NET.GpsClients
 
         private GeoCoordinateWatcher _watcher;
 
+        private DateTime? _previousReadTime;
+
         #endregion
 
         #region Constructors
@@ -61,6 +63,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         private void WatcherOnPositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
+            if (_previousReadTime != null && GpsInfo.ReadFrequenty != 0 && e.Position.Timestamp.Subtract(new TimeSpan(0, 0, 0, 0, GpsInfo.ReadFrequenty)) <= _previousReadTime) return;
             OnGpsDataReceived(new GpsDataEventArgs(e.Position.Location));
         }
 
