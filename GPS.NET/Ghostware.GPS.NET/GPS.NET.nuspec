@@ -24,6 +24,7 @@
       - Added ComPort Readfrequenty, and added 0 as unlimited
       - Changed GPSD Readfrequenty, and added 0 as unlimited
       - Added Readfrequenty to the Windows Location API, and added 0 as unlimited
+      - Added GPSType property
 
       v1.0.2:
       --------

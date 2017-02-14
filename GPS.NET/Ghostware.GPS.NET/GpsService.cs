@@ -18,6 +18,7 @@ namespace Ghostware.GPS.NET
         #region Public Properties
 
         public bool IsRunning => _client.IsRunning;
+        public GpsType GpsType => _client.GpsType;
 
         #endregion
 
