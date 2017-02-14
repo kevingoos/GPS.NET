@@ -36,6 +36,13 @@ namespace Ghostware.GPS.NET.Models.Events
             Speed = gpsLocation.Speed;
         }
 
+        public GpsDataEventArgs(double latitude, double longitude, double speed = 0.0d)
+        {
+            Latitude = latitude;
+            Longitude = longitude;
+            Speed = speed;
+        }
+
         public override string ToString()
         {
             return $"Latitude: {Latitude} - Longitude: {Longitude} - Speed: {Speed}";

@@ -17,6 +17,8 @@ namespace Ghostware.GPS.NET.GpsClients
         private readonly NmeaParser _parser = new NmeaParser();
         private SerialPort _serialPort;
 
+        private DateTime? _previousReadTime;
+
         #endregion
 
         #region Constructors
@@ -36,7 +38,7 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Connect()
         {
             var data = (ComPortInfo)GpsInfo;
-            
+
             OnGpsStatusChanged(GpsStatus.Connecting);
             _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 
@@ -75,10 +77,9 @@ namespace Ghostware.GPS.NET.GpsClients
                 var readString = _serialPort.ReadExisting();
                 OnRawGpsDataReceived(readString);
                 var result = _parser.Parse(readString);
-                if (typeof(GprmcMessage) == result.GetType())
-                {
-                    OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)result));
-                }
+                if (typeof(GprmcMessage) != result.GetType()) return;
+                if (_previousReadTime != null && GpsInfo.ReadFrequenty != 0 && ((GprmcMessage)result).UpdateDate.Subtract(new TimeSpan(0, 0, 0, 0, GpsInfo.ReadFrequenty)) <= _previousReadTime) return;
+                OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)result));
             }
             catch (UnknownTypeException ex)
             {

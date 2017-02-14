@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 
-namespace Ghostware.GPS.NET.GPSDConsole
+namespace Ghostware.GPS.NET.FileConsole
 {
     public class Program
     {
@@ -20,16 +21,10 @@ namespace Ghostware.GPS.NET.GPSDConsole
             _eventHandler += ExitHandler;
             SetConsoleCtrlHandler(_eventHandler, true);
 
-            var info = new GpsdInfo()
+            var info = new FileGpsInfo
             {
-                Address = "178.50.250.33",
-                Port = 2947,
-                IsProxyEnabled = true,
-                ProxyAddress = "proxy",
-                ProxyPort = 80,
-                IsProxyAuthManual = true,
-                ProxyUsername = "EXJ508",
-                ProxyPassword = "Xlssx534"
+                FilePath = "GPS.TXT",
+                FileType = FileType.LatitudeLongitude
             };
             _gpsService = new GpsService(info);
 
@@ -42,7 +37,7 @@ namespace Ghostware.GPS.NET.GPSDConsole
 
         private static void GpsdServiceOnLocationChanged(object sender, GpsDataEventArgs e)
         {
-            Console.WriteLine(e.ToString());
+            System.Console.WriteLine(e.ToString());
         }
 
         private static bool ExitHandler()

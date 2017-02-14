@@ -22,7 +22,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         private GpsdDataParser _gpsdDataParser;
         private int _retryReadCount;
-        private GpsLocation _previousGpsLocation;
+        private DateTime? _previousReadTime;
 
         #endregion
 
@@ -99,12 +99,11 @@ namespace Ghostware.GPS.NET.GpsClients
 
                     var message = _gpsdDataParser.GetGpsData(gpsData);
                     var gpsLocation = message as GpsLocation;
-                    if (gpsLocation == null ||
-                        (_previousGpsLocation != null &&
-                         gpsLocation.Time.Subtract(new TimeSpan(0, 0, 0, 0, data.ReadFrequenty)) <= _previousGpsLocation.Time))
+                    if (gpsLocation == null || _previousReadTime != null && data.ReadFrequenty != 0 &&
+                        gpsLocation.Time.Subtract(new TimeSpan(0, 0, 0, 0, data.ReadFrequenty)) <= _previousReadTime)
                         continue;
                     OnGpsDataReceived(new GpsDataEventArgs(gpsLocation));
-                    _previousGpsLocation = gpsLocation;
+                    _previousReadTime = gpsLocation.Time;
                 }
                 catch (IOException)
                 {

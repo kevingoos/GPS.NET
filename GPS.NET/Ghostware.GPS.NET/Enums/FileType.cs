@@ -3,6 +3,7 @@
     public enum FileType
     {
         Nmea,
-        Gpsd
+        Gpsd,
+        LatitudeLongitude,
     }
 }
