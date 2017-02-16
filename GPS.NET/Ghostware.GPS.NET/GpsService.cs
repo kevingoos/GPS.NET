@@ -62,6 +62,11 @@ namespace Ghostware.GPS.NET
             _client.RawGpsCallbackEvent += new EventHandler<string>(action);
         }
 
+        public void RegisterStatusEvent(Action<object, GpsStatus> action)
+        {
+            _client.GpsStatusEvent += new EventHandler<GpsStatus>(action);
+        }
+
         public void RemoveDataEvent(Action<object, GpsDataEventArgs> action)
         {
             _client.GpsCallbackEvent -= new EventHandler<GpsDataEventArgs>(action);
@@ -72,6 +77,11 @@ namespace Ghostware.GPS.NET
             _client.RawGpsCallbackEvent -= new EventHandler<string>(action);
         }
 
+        public void RemoveStatusEvent(Action<object, GpsStatus> action)
+        {
+            _client.GpsStatusEvent -= new EventHandler<GpsStatus>(action);
+        }
+        
         #endregion
     }
 }
