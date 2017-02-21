@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Exceptions;
-using Ghostware.GPS.NET.Extensions;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 using Ghostware.GPS.NET.Models.GpsdModels;

@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
-using Ghostware.GPS.NET.Models.ConnectionInfo.Credentials;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET.GPSDWpfApplication

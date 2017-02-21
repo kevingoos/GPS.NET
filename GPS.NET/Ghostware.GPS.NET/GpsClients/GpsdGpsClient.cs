@@ -48,9 +48,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
             try
             {
-                _client = data.ProxyCredentials != null
-                    ? ProxyClientHandler.GetTcpClient(data)
-                    : new TcpClient(data.Address, data.Port);
+                _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);
                 _streamReader = new StreamReader(_client.GetStream());
                 _streamWriter = new StreamWriter(_client.GetStream());
 
