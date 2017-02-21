@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
+using Ghostware.GPS.NET.Models.ConnectionInfo.Credentials;
 
 namespace Ghostware.GPS.NET.Handlers
 {
@@ -25,9 +26,17 @@ namespace Ghostware.GPS.NET.Handlers
             request.Proxy = webProxy;
             request.Method = "CONNECT";
 
-            if (data.IsProxyAuthManual)
+            if (data.ProxyCredentials != null)
             {
-                webProxy.Credentials = new NetworkCredential(data.ProxyUsername, data.ProxyPassword);
+                var credentials = data.ProxyCredentials;
+                if (credentials.GetType() == typeof(ProxyCredentials))
+                {
+                    webProxy.Credentials = new NetworkCredential(credentials.ProxyUsername, ((ProxyCredentials)credentials).ProxyPassword);
+                }
+                else if (credentials.GetType() == typeof(SecureProxyCredentials))
+                {
+                    webProxy.Credentials = new NetworkCredential(data.ProxyCredentials.ProxyUsername, ((SecureProxyCredentials)credentials).ProxyPassword);
+                }
             }
             else
             {

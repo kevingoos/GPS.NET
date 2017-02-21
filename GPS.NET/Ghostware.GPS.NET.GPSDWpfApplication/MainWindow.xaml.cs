@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
+using Ghostware.GPS.NET.Models.ConnectionInfo.Credentials;
 using Ghostware.GPS.NET.Models.Events;
 
 namespace Ghostware.GPS.NET.GPSDWpfApplication
@@ -34,9 +35,7 @@ namespace Ghostware.GPS.NET.GPSDWpfApplication
                 //IsProxyEnabled = true,
                 //ProxyAddress = "proxy",
                 //ProxyPort = 80,
-                //IsProxyAuthManual = true,
-                //ProxyUsername = "*****",
-                //ProxyPassword = "*****"
+                //ProxyCredentials = new ProxyCredentials("*****", "*****")
             };
             _gpsdService = new GpsService(info);
             _writer = new StreamWriter("testFile1.nmea");

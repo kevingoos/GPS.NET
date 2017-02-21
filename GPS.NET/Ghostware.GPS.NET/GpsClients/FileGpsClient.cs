@@ -46,89 +46,102 @@ namespace Ghostware.GPS.NET.GpsClients
             var latColumnIndex = 0;
             var longColumnIndex = 0;
             var minArraySize = 0;
-            
-            using (var streamReader = File.OpenText(data.FilePath))
+
+            try
             {
-                string line;
-                OnGpsStatusChanged(GpsStatus.Connected);
-                while (IsRunning && (line = streamReader.ReadLine()) != null)
+                using (var streamReader = File.OpenText(data.FilePath))
                 {
-                    try
+                    string line;
+                    OnGpsStatusChanged(GpsStatus.Connected);
+                    while (IsRunning && (line = streamReader.ReadLine()) != null)
                     {
-                        OnRawGpsDataReceived(line);
-                        switch (data.FileType)
+                        try
                         {
-                            case FileType.Nmea:
-                                var nmeaResult = parser.Parse(line);
-                                OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)nmeaResult));
-                                break;
-                            case FileType.Gpsd:
-                                var gpsdResult = gpsdDataParser.GetGpsData(line);
-                                var gpsLocation = gpsdResult as GpsLocation;
-                                if (gpsLocation != null)
-                                {
-                                    OnGpsDataReceived(new GpsDataEventArgs(gpsLocation));
-                                }
-                                break;
-                            case FileType.LatitudeLongitude:
-                                if (headerLine)
-                                {
-                                    var headers = line.Split(';');
+                            OnRawGpsDataReceived(line);
+                            switch (data.FileType)
+                            {
+                                case FileType.Nmea:
+                                    var nmeaResult = parser.Parse(line);
+                                    OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)nmeaResult));
+                                    break;
+                                case FileType.Gpsd:
+                                    var gpsdResult = gpsdDataParser.GetGpsData(line);
+                                    var gpsLocation = gpsdResult as GpsLocation;
+                                    if (gpsLocation != null)
+                                    {
+                                        OnGpsDataReceived(new GpsDataEventArgs(gpsLocation));
+                                    }
+                                    break;
+                                case FileType.LatitudeLongitude:
+                                    if (headerLine)
+                                    {
+                                        var headers = line.Split(';');
 
-                                    for (var i = 0; i < headers.Length; i++)
-                                    {
-                                        if (headers[i] == Properties.Settings.Default.File_Latitude_Header)
+                                        for (var i = 0; i < headers.Length; i++)
                                         {
-                                            latColumnIndex = i;
+                                            if (headers[i] == Properties.Settings.Default.File_Latitude_Header)
+                                            {
+                                                latColumnIndex = i;
+                                            }
+                                            if (headers[i] == Properties.Settings.Default.File_Longitude_Header)
+                                            {
+                                                longColumnIndex = i;
+                                            }
                                         }
-                                        if (headers[i] == Properties.Settings.Default.File_Longitude_Header)
+                                        minArraySize = Math.Max(latColumnIndex, longColumnIndex);
+                                        headerLine = false;
+                                    }
+                                    else
+                                    {
+                                        var latLongResult = line.Split(';');
+                                        if (latLongResult.Length < 2)
                                         {
-                                            longColumnIndex = i;
+                                            throw new InvalidFileFormatException(data.FilePath);
                                         }
-                                    }
-                                    minArraySize = Math.Max(latColumnIndex, longColumnIndex);
-                                    headerLine = false;
-                                }
-                                else
-                                {
-                                    var latLongResult = line.Split(';');
-                                    if (latLongResult.Length < 2)
-                                    {
-                                        throw new InvalidFileFormatException(data.FilePath);
-                                    }
-                                    if (latLongResult.Length < minArraySize)
-                                    {
-                                        continue;
-                                    }
+                                        if (latLongResult.Length < minArraySize)
+                                        {
+                                            continue;
+                                        }
 
-                                    double latitude;
-                                    if (!double.TryParse(latLongResult[latColumnIndex], NumberStyles.Any, CultureInfo.InvariantCulture, out latitude))
-                                    {
-                                        continue;
+                                        double latitude;
+                                        if (
+                                            !double.TryParse(latLongResult[latColumnIndex], NumberStyles.Any,
+                                                CultureInfo.InvariantCulture, out latitude))
+                                        {
+                                            continue;
+                                        }
+                                        double longitude;
+                                        if (
+                                            !double.TryParse(latLongResult[longColumnIndex], NumberStyles.Any,
+                                                CultureInfo.InvariantCulture, out longitude))
+                                        {
+                                            continue;
+                                        }
+
+                                        var message = new GpsDataEventArgs(latitude, longitude);
+                                        OnGpsDataReceived(message);
                                     }
-                                    double longitude;
-                                    if (!double.TryParse(latLongResult[longColumnIndex], NumberStyles.Any, CultureInfo.InvariantCulture, out longitude))
-                                    {
-                                        continue;
-                                    }
-                                    
-                                    var message = new GpsDataEventArgs(latitude, longitude);
-                                    OnGpsDataReceived(message);
-                                }
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
+                                    break;
+                                default:
+                                    throw new ArgumentOutOfRangeException();
+                            }
+                            Thread.Sleep(data.ReadFrequenty);
                         }
-                        Thread.Sleep(data.ReadFrequenty);
+                        catch (UnknownTypeException)
+                        {
+                            Disconnect();
+                            throw;
+                        }
                     }
-                    catch (UnknownTypeException)
-                    {
-                        Disconnect();
-                        throw;
-                    }
+                    return true;
                 }
-                return true;
             }
+            catch
+            {
+                Disconnect();
+                throw;
+            }
+
         }
 
         public override bool Disconnect()

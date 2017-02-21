@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
-using Ghostware.GPS.NET.Models.ConnectionInfo.Credentials;
 using Ghostware.GPS.NET.Models.Events;
 
-namespace Ghostware.GPS.NET.GPSDConsole
+namespace Ghostware.GPS.NET.ComPortConsole
 {
     public class Program
     {
@@ -21,23 +21,30 @@ namespace Ghostware.GPS.NET.GPSDConsole
             _eventHandler += ExitHandler;
             SetConsoleCtrlHandler(_eventHandler, true);
 
-            var info = new GpsdInfo()
+            var info = new ComPortInfo()
             {
-                Address = "***.* **.* **.***",
-                //Default
-                //Port = 2947,
-                //IsProxyEnabled = true,
-                //ProxyAddress = "proxy",
-                //ProxyPort = 80,
-                //ProxyCredentials = new ProxyCredentials("*****", "*****")
+                ComPort = "COM9\0\0\0\0",
             };
             _gpsService = new GpsService(info);
-
+            _gpsService.RegisterStatusEvent(Action);
             _gpsService.RegisterDataEvent(GpsdServiceOnLocationChanged);
-            _gpsService.Connect();
+
+            try
+            {
+                _gpsService.Connect();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("The selected com port is already in use!");
+            }
 
             Console.WriteLine("Press enter to continue...");
             Console.ReadKey();
+        }
+
+        private static void Action(object o, GpsStatus gpsStatus)
+        {
+            Console.WriteLine(gpsStatus);
         }
 
         private static void GpsdServiceOnLocationChanged(object sender, GpsDataEventArgs e)

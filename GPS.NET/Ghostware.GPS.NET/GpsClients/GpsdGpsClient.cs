@@ -45,27 +45,37 @@ namespace Ghostware.GPS.NET.GpsClients
             var data = (GpsdInfo)GpsInfo;
 
             OnGpsStatusChanged(GpsStatus.Connecting);
-            _client = data.IsProxyEnabled ? ProxyClientHandler.GetTcpClient(data) : new TcpClient(data.Address, data.Port);
-            _streamReader = new StreamReader(_client.GetStream());
-            _streamWriter = new StreamWriter(_client.GetStream());
 
-            _gpsdDataParser = new GpsdDataParser();
-
-            var gpsData = "";
-            while (string.IsNullOrEmpty(gpsData))
+            try
             {
-                gpsData = _streamReader.ReadLine();
+                _client = data.ProxyCredentials != null
+                    ? ProxyClientHandler.GetTcpClient(data)
+                    : new TcpClient(data.Address, data.Port);
+                _streamReader = new StreamReader(_client.GetStream());
+                _streamWriter = new StreamWriter(_client.GetStream());
+
+                _gpsdDataParser = new GpsdDataParser();
+
+                var gpsData = "";
+                while (string.IsNullOrEmpty(gpsData))
+                {
+                    gpsData = _streamReader.ReadLine();
+                }
+
+                var message = _gpsdDataParser.GetGpsData(gpsData);
+                var version = message as GpsdVersion;
+                if (version == null) return false;
+                ExecuteGpsdCommand(data.GpsOptions.GetCommand());
+                OnGpsStatusChanged(GpsStatus.Connected);
+
+
+                StartGpsReading(data);
             }
-
-            var message = _gpsdDataParser.GetGpsData(gpsData);
-            var version = message as GpsdVersion;
-            if (version == null) return false;
-            ExecuteGpsdCommand(data.GpsOptions.GetCommand());
-            OnGpsStatusChanged(GpsStatus.Connected);
-
-
-            StartGpsReading(data);
-
+            catch
+            {
+                Disconnect();
+                throw;
+            }
             return true;
         }
 

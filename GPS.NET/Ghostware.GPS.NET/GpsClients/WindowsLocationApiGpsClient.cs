@@ -12,7 +12,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         private GeoCoordinateWatcher _watcher;
 
-        private DateTime? _previousReadTime;
+        private DateTimeOffset? _previousReadTime;
 
         #endregion
 
@@ -37,7 +37,18 @@ namespace Ghostware.GPS.NET.GpsClients
 
             _watcher.PositionChanged += WatcherOnPositionChanged;
             _watcher.StatusChanged += WatcherOnStatusChanged;
-            return _watcher.TryStart(false, TimeSpan.FromMilliseconds(data.Timeout));
+
+            bool result;
+            try
+            {
+                result = _watcher.TryStart(false, TimeSpan.FromMilliseconds(data.Timeout));
+            }
+            catch
+            {
+                Disconnect();
+                throw;
+            }
+            return result;
         }
 
         private void WatcherOnStatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
@@ -65,6 +76,7 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             if (_previousReadTime != null && GpsInfo.ReadFrequenty != 0 && e.Position.Timestamp.Subtract(new TimeSpan(0, 0, 0, 0, GpsInfo.ReadFrequenty)) <= _previousReadTime) return;
             OnGpsDataReceived(new GpsDataEventArgs(e.Position.Location));
+            _previousReadTime = e.Position.Timestamp;
         }
 
         public override bool Disconnect()
