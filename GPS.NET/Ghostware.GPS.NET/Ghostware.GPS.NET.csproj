@@ -72,6 +72,9 @@
     <Compile Include="GpsClients\GpsdGpsClient.cs" />
     <Compile Include="GpsClients\BaseGpsClient.cs" />
     <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
+    <Compile Include="Models\ConnectionInfo\Credentials\BaseProxyCredentials.cs" />
+    <Compile Include="Models\ConnectionInfo\Credentials\ProxyCredentials.cs" />
+    <Compile Include="Models\ConnectionInfo\Credentials\SecureProxyCredentials.cs" />
     <Compile Include="Models\Events\GpsStatusEventArgs.cs" />
     <Compile Include="Models\GpsdModels\DataClassType.cs" />
     <Compile Include="Models\GpsdModels\GpsDevice.cs" />

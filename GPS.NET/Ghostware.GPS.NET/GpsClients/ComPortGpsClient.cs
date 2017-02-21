@@ -45,17 +45,24 @@ namespace Ghostware.GPS.NET.GpsClients
             // Attach a method to be called when there
             // is data waiting in the port's buffer
             _serialPort.DataReceived += port_DataReceived;
-
-
-            // Begin communications
-            _serialPort.Open();
-
-            OnGpsStatusChanged(GpsStatus.Connected);
-            // Enter an application loop to keep this thread alive
-            while (_serialPort.IsOpen)
+            try
             {
-                Thread.Sleep(data.ReadFrequenty);
+                // Begin communications
+                _serialPort.Open();
+
+                OnGpsStatusChanged(GpsStatus.Connected);
+                // Enter an application loop to keep this thread alive
+                while (_serialPort.IsOpen)
+                {
+                    Thread.Sleep(data.ReadFrequenty);
+                }
             }
+            catch
+            {
+                Disconnect();
+                throw;
+            }
+            
             return true;
         }
 

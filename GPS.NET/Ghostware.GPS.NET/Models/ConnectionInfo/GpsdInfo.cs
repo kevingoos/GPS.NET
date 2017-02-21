@@ -1,4 +1,5 @@
 ﻿using Ghostware.GPS.NET.Constants;
+using Ghostware.GPS.NET.Models.ConnectionInfo.Credentials;
 using Ghostware.GPS.NET.Models.GpsdModels;
 
 namespace Ghostware.GPS.NET.Models.ConnectionInfo
@@ -12,10 +13,8 @@ namespace Ghostware.GPS.NET.Models.ConnectionInfo
 
         public string ProxyAddress { get; set; }
         public int ProxyPort { get; set; }
-
-        public bool IsProxyAuthManual { get; set; }
-        public string ProxyUsername { get; set; }
-        public string ProxyPassword { get; set; }
+        
+        public BaseProxyCredentials ProxyCredentials { get; set; }
 
         public int RetryRead { get; set; } = 3;
 
