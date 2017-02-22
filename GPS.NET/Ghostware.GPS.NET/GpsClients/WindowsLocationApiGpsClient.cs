@@ -33,8 +33,10 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Connect()
         {
             var data = (WindowsLocationApiInfo)GpsInfo;
-            _watcher = new GeoCoordinateWatcher();
 
+            IsRunning = true;
+            _watcher = new GeoCoordinateWatcher();
+            
             _watcher.PositionChanged += WatcherOnPositionChanged;
             _watcher.StatusChanged += WatcherOnStatusChanged;
 
@@ -81,6 +83,7 @@ namespace Ghostware.GPS.NET.GpsClients
 
         public override bool Disconnect()
         {
+            IsRunning = false;
             _watcher.Stop();
             _watcher.Dispose();
             return true;

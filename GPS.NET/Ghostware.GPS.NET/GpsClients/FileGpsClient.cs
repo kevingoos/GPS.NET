@@ -34,9 +34,9 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (FileGpsInfo)GpsInfo;
 
-            OnGpsStatusChanged(GpsStatus.Connecting);
             IsRunning = true;
-
+            OnGpsStatusChanged(GpsStatus.Connecting);
+            
             var parser = new NmeaParser();
             var gpsdDataParser = new GpsdDataParser();
 
