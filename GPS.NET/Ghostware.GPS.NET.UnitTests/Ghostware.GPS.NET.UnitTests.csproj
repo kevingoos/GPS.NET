@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Converters\CoordinateConverterUtilitiesTests.cs" />
     <Compile Include="Factories\GpsClientFactoryTests.cs" />
     <Compile Include="Factories\GpsDataFactoryTests.cs" />
     <Compile Include="Factories\UnkownGpsInfo.cs" />

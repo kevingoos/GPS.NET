@@ -5,9 +5,9 @@ namespace Ghostware.GPS.NET.Converters
     public class CoordinateConverterUtilities
     {
 #if WIN64
-        private const string DllImport = @"ETRS89_LAMBERT_UTM_64bits.dll";
+        private const string DllImport = @"lib/ETRS89_LAMBERT_UTM_64bits.dll";
 #else
-        private const string DllImport = @"ETRS89_LAMBERT_UTM_32bits.dll";
+        private const string DllImport = @"lib/ETRS89_LAMBERT_UTM_32bits.dll";
 #endif
 
         #region Coordinate conversion functions using NGI DLL
