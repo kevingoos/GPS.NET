@@ -103,10 +103,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\ETRS89_LAMBERT_UTM_32bits.dll">
+    <Content Include="plugins\ETRS89_LAMBERT_UTM_32bits.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="lib\ETRS89_LAMBERT_UTM_64bits.dll">
+    <Content Include="plugins\ETRS89_LAMBERT_UTM_64bits.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
