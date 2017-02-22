@@ -39,6 +39,7 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (ComPortInfo)GpsInfo;
 
+            IsRunning = true;
             OnGpsStatusChanged(GpsStatus.Connecting);
             _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 
@@ -69,6 +70,7 @@ namespace Ghostware.GPS.NET.GpsClients
         public override bool Disconnect()
         {
             _serialPort.Close();
+            IsRunning = false;
             OnGpsStatusChanged(GpsStatus.Disabled);
             return true;
         }

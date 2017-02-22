@@ -44,6 +44,7 @@ namespace Ghostware.GPS.NET.GpsClients
         {
             var data = (GpsdInfo)GpsInfo;
 
+            IsRunning = true;
             OnGpsStatusChanged(GpsStatus.Connecting);
 
             try
@@ -130,6 +131,7 @@ namespace Ghostware.GPS.NET.GpsClients
             _streamReader?.Close();
             _streamWriter?.Close();
             _client?.Close();
+
             OnGpsStatusChanged(GpsStatus.Disabled);
 
             return true;

@@ -103,12 +103,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Plugins\ETRS89_LAMBERT_UTM_32bits.dll">
+    <EmbeddedResource Include="lib\ETRS89_LAMBERT_UTM_32bits.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Plugins\ETRS89_LAMBERT_UTM_64bits.dll">
+    </EmbeddedResource>
+    <EmbeddedResource Include="lib\ETRS89_LAMBERT_UTM_64bits.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
