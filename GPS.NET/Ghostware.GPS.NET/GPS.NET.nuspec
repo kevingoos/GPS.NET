@@ -20,8 +20,8 @@
     <releaseNotes>
       v1.0.7:
       --------
-      - Fixed IsRunning not being set correctly
-      - Trying deploying dll's a different way
+      - Fix for running property
+      - Working on external dll's
 
       v1.0.6:
       --------
