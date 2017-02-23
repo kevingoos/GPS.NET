@@ -10,7 +10,6 @@ using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.GPS.NET.Parsers;
 using Ghostware.NMEAParser;
 using Ghostware.NMEAParser.NMEAMessages;
-using UnknownTypeException = Ghostware.NMEAParser.Exceptions.UnknownTypeException;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
