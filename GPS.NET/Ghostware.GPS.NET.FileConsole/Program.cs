@@ -24,7 +24,7 @@ namespace Ghostware.GPS.NET.FileConsole
             var info = new FileGpsInfo
             {
                 FilePath = "GPS.TXT",
-                FileType = FileType.LatitudeLongitude
+                FileType = FileType.Nmea
             };
             _gpsService = new GpsService(info);
 
