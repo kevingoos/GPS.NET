@@ -35,6 +35,8 @@ namespace Ghostware.GPS.NET.GpsClients
             var data = (WindowsLocationApiInfo)GpsInfo;
 
             IsRunning = true;
+            OnGpsStatusChanged(GpsStatus.Connecting);
+
             _watcher = new GeoCoordinateWatcher();
             
             _watcher.PositionChanged += WatcherOnPositionChanged;
@@ -69,8 +71,6 @@ namespace Ghostware.GPS.NET.GpsClients
                 case GeoPositionStatus.Disabled:
                     OnGpsStatusChanged(GpsStatus.Disabled);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -86,6 +86,7 @@ namespace Ghostware.GPS.NET.GpsClients
             IsRunning = false;
             _watcher.Stop();
             _watcher.Dispose();
+            OnGpsStatusChanged(GpsStatus.Disabled);
             return true;
         }
 
