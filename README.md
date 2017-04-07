@@ -12,6 +12,8 @@ The library contains the following ways to connect to gps services:
 
 ## Dependencies
 - [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/)
-- [Ghostware.NMEAParser](https://www.nuget.org/packages/Ghostware.GPS.NET/)
+- [Ghostware.NMEAParser](https://www.nuget.org/packages/Ghostware.NMEAParser/)
 
 ## Usefull Links
+- [Wiki](https://github.com/GhostwareDev/GPS.NET/wiki)
+- [NuGet Package](https://www.nuget.org/packages/Ghostware.GPS.NET/)
