@@ -23,7 +23,7 @@ namespace Ghostware.GPS.NET.FileConsole
 
             var info = new FileGpsInfo
             {
-                FilePath = @"C:\Users\EXJ508\Desktop\Gps Files\gps_20151119_1.nmea",
+                FilePath = "GPS.TXT",
                 FileType = FileType.Nmea
             };
             _gpsService = new GpsService(info);
