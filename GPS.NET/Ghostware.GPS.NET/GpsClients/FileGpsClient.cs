@@ -10,7 +10,6 @@ using Ghostware.GPS.NET.Models.GpsdModels;
 using Ghostware.GPS.NET.Parsers;
 using Ghostware.NMEAParser;
 using Ghostware.NMEAParser.NMEAMessages;
-using UnknownTypeException = Ghostware.NMEAParser.Exceptions.UnknownTypeException;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
@@ -58,8 +57,9 @@ namespace Ghostware.GPS.NET.GpsClients
                         {
                             case FileType.Nmea:
                                 var nmeaResult = parser.Parse(line);
-                                if (nmeaResult == null) continue;
-                                OnGpsDataReceived(new GpsDataEventArgs((GprmcMessage)nmeaResult));
+                                var result = nmeaResult as GprmcMessage;
+                                if (result == null) continue;
+                                OnGpsDataReceived(new GpsDataEventArgs(result));
                                 break;
                             case FileType.Gpsd:
                                 var gpsdResult = gpsdDataParser.GetGpsData(line);

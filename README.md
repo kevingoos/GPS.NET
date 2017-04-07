@@ -15,3 +15,5 @@ The library contains the following ways to connect to gps services:
 - [Ghostware.NMEAParser](https://www.nuget.org/packages/Ghostware.NMEAParser/)
 
 ## Usefull Links
+- [Wiki](https://github.com/GhostwareDev/GPS.NET/wiki)
+- [NuGet Package](https://www.nuget.org/packages/Ghostware.GPS.NET/)
