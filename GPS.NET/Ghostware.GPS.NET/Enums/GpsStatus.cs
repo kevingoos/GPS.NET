@@ -2,8 +2,8 @@
 {
     public enum GpsStatus
     {
+        Disabled,
         Connecting,
-        Connected,
-        Disabled
+        Connected
     }
 }
