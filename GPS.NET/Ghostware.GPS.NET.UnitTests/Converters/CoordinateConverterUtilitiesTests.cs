@@ -14,6 +14,9 @@ namespace Ghostware.GPS.NET.UnitTests.Converters
             double z = 0;
             var result = CoordinateConverterUtilities.GeoETRS89ToLambert72(50.8991, 4.6157, 0, ref x, ref y, ref z);
             Assert.AreEqual(1, result);
+            Assert.AreEqual(167371.95591558915, x);
+            Assert.AreEqual(176557.58040618268, y);
+            Assert.AreEqual(-42.959737811999808, z);
         }
     }
 }
