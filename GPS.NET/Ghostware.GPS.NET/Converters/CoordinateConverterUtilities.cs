@@ -2,7 +2,7 @@
 
 namespace Ghostware.GPS.NET.Converters
 {
-    public class CoordinateConverterUtilities
+    internal class CoordinateConverterUtilities
     {
 #if WIN64
         private const string DllImport = @"plugins/ETRS89_LAMBERT_UTM_64bits.dll";
