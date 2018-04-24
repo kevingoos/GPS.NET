@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Ghostware.GPS.NET</id>
-    <version>1.0.13</version>
+    <version>1.0.14</version>
     <title>Ghostware.GPS.NET</title>
     <authors>Kevin Goos</authors>
     <owners>Ghostware</owners>
@@ -18,10 +18,14 @@
       - Using the Windows location API. (Starting from windows 7)
     </description>
     <releaseNotes>
-	  v1.0.13:
+      v1.0.14:
+      --------
+      - Made CoordinateConverter class internal
+
+      v1.0.13:
       --------
       - Updated order of GPS status enum
-	  
+
       v1.0.12:
       --------
       - Temp fix for the new nmea messages
