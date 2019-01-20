@@ -13,7 +13,9 @@ namespace Ghostware.GPS.NET.Models.GpsdModels
             {"VERSION", typeof(GpsdVersion)},
             {"DEVICES", typeof(GpsDevices)},
             {"WATCH", typeof(GpsdOptions)},
-            {"TPV", typeof(GpsLocation)}
+            {"TPV", typeof(GpsLocation)},
+            {"SKY", typeof(GpsSky)}
+            
         };
 
         [DataMember(Name = "class")]
