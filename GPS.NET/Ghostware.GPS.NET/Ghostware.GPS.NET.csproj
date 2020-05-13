@@ -1,120 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Ghostware.GPS.NET</RootNamespace>
-    <AssemblyName>Ghostware.GPS.NET</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Ghostware.NMEAParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ghostware.NMEAParser.1.0.5\lib\net452\Ghostware.NMEAParser.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Device" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="GeoCoordinate.NetStandard1" Version="1.0.1" />
+    <PackageReference Include="Ghostware.NMEAParser" Version="1.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="System.IO.Ports" Version="4.7.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Constants\GpsdConstants.cs" />
-    <Compile Include="Converters\CoordinateConverterUtilities.cs" />
-    <Compile Include="Enums\FileType.cs" />
-    <Compile Include="Enums\GpsCoordinateSystem.cs" />
-    <Compile Include="Enums\GpsStatus.cs" />
-    <Compile Include="Exceptions\ConnectionLostException.cs" />
-    <Compile Include="Exceptions\InvalidDataTypeException.cs" />
-    <Compile Include="Exceptions\InvalidFileFormatException.cs" />
-    <Compile Include="Exceptions\NoGpsFoundException.cs" />
-    <Compile Include="Exceptions\NotConnectedException.cs" />
-    <Compile Include="Exceptions\UnknownTypeException.cs" />
-    <Compile Include="Factories\GpsClientFactory.cs" />
-    <Compile Include="Factories\GpsDataFactory.cs" />
-    <Compile Include="GpsClients\ComPortGpsClient.cs" />
-    <Compile Include="GpsClients\FileGpsClient.cs" />
-    <Compile Include="GpsClients\GpsdGpsClient.cs" />
-    <Compile Include="GpsClients\BaseGpsClient.cs" />
-    <Compile Include="GpsClients\WindowsLocationApiGpsClient.cs" />
-    <Compile Include="Models\ConnectionInfo\Credentials\BaseProxyCredentials.cs" />
-    <Compile Include="Models\ConnectionInfo\Credentials\ProxyCredentials.cs" />
-    <Compile Include="Models\ConnectionInfo\Credentials\SecureProxyCredentials.cs" />
-    <Compile Include="Models\Events\GpsStatusEventArgs.cs" />
-    <Compile Include="Models\GpsdModels\DataClassType.cs" />
-    <Compile Include="Models\GpsdModels\GpsDevice.cs" />
-    <Compile Include="Models\GpsdModels\GpsDevices.cs" />
-    <Compile Include="Models\GpsdModels\GpsdOptions.cs" />
-    <Compile Include="Models\GpsdModels\GpsdVersion.cs" />
-    <Compile Include="Models\GpsdModels\GpsLocation.cs" />
-    <Compile Include="Parsers\GpsdDataParser.cs" />
-    <Compile Include="GpsService.cs" />
-    <Compile Include="Models\ConnectionInfo\ComPortInfo.cs" />
-    <Compile Include="Models\ConnectionInfo\FileGpsInfo.cs" />
-    <Compile Include="Models\ConnectionInfo\BaseGpsInfo.cs" />
-    <Compile Include="Models\ConnectionInfo\GpsdInfo.cs" />
-    <Compile Include="Enums\GpsType.cs" />
-    <Compile Include="Models\ConnectionInfo\WindowsLocationApiInfo.cs" />
-    <Compile Include="Models\Events\GpsDataEventArgs.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Handlers\ProxyClientHandler.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="GPS.NET.nuspec" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="plugins\ETRS89_LAMBERT_UTM_32bits.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="plugins\ETRS89_LAMBERT_UTM_64bits.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
