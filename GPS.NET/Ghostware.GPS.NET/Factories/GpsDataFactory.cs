@@ -22,8 +22,6 @@ namespace Ghostware.GPS.NET.Factories
                     return typeof(ComPortInfo);
                 case GpsType.Gpsd:
                     return typeof(GpsdInfo);
-                case GpsType.WindowsLocationApi:
-                    return typeof(WindowsLocationApiInfo);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

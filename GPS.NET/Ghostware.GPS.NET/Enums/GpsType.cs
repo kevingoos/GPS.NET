@@ -4,7 +4,6 @@
     {
         File,
         ComPort,
-        Gpsd,
-        WindowsLocationApi
+        Gpsd
     }
 }

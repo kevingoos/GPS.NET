@@ -18,8 +18,6 @@ namespace Ghostware.GPS.NET.Factories
                     return new ComPortGpsClient(new ComPortInfo());
                 case GpsType.Gpsd:
                     return new GpsdGpsClient(new GpsdInfo());
-                case GpsType.WindowsLocationApi:
-                    return new WindowsLocationApiGpsClient(new WindowsLocationApiInfo());
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -38,10 +36,6 @@ namespace Ghostware.GPS.NET.Factories
             if (baseGpsData.GetType() == typeof(GpsdInfo))
             {
                 return new GpsdGpsClient(baseGpsData);
-            }
-            if (baseGpsData.GetType() == typeof(WindowsLocationApiInfo))
-            {
-                return new WindowsLocationApiGpsClient(baseGpsData);
             }
             throw new UnknownTypeException(baseGpsData.GetType());
         }
