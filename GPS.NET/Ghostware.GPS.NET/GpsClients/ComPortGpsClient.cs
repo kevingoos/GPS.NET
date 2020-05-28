@@ -1,12 +1,20 @@
 ﻿using System;
+using System.IO;
 using System.IO.Ports;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
+using crozone.SerialPorts.Abstractions;
+using crozone.SerialPorts.LinuxSerialPort;
+using crozone.SerialPorts.WindowsSerialPort;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
 using Ghostware.NMEAParser;
 using Ghostware.NMEAParser.Exceptions;
 using Ghostware.NMEAParser.NMEAMessages;
+using Parity = crozone.SerialPorts.Abstractions.Parity;
+using StopBits = crozone.SerialPorts.Abstractions.StopBits;
 
 namespace Ghostware.GPS.NET.GpsClients
 {
@@ -15,7 +23,8 @@ namespace Ghostware.GPS.NET.GpsClients
         #region Private Properties
 
         private readonly NmeaParser _parser = new NmeaParser();
-        private SerialPort _serialPort;
+        private ISerialPort _serialPort;
+        private StreamReader _reader;
 
         private DateTime? _previousReadTime;
 
@@ -41,20 +50,24 @@ namespace Ghostware.GPS.NET.GpsClients
 
             IsRunning = true;
             OnGpsStatusChanged(GpsStatus.Connecting);
-            _serialPort = new SerialPort(data.ComPort, 9600, Parity.None, 8, StopBits.One);
 
-            // Attach a method to be called when there
-            // is data waiting in the port's buffer
-            _serialPort.DataReceived += port_DataReceived;
+            _serialPort = CreatePort(data.ComPort);
+            _serialPort.BaudRate = 9600;
+            _serialPort.Parity = Parity.None;
+            _serialPort.DataBits = 8;
+            _serialPort.StopBits = StopBits.One;
+
             try
             {
                 // Begin communications
                 _serialPort.Open();
+                _reader = new StreamReader(_serialPort.BaseStream, Encoding.ASCII);
 
                 OnGpsStatusChanged(GpsStatus.Connected);
                 // Enter an application loop to keep this thread alive
                 while (_serialPort.IsOpen)
                 {
+                    ReadLine();
                     Thread.Sleep(data.ReadFrequenty);
                 }
             }
@@ -75,15 +88,22 @@ namespace Ghostware.GPS.NET.GpsClients
             return true;
         }
 
+        private static ISerialPort CreatePort(string portName)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) return new LinuxSerialPort(portName);
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return new WindowsSerialPort(new SerialPort(portName));
+            else throw new InvalidOperationException("unsupported operating system");
+        }
+
         #endregion
 
         #region Location Callbacks
 
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void ReadLine()
         {
             try
             {
-                var readString = _serialPort.ReadExisting();
+                var readString = _reader.ReadLine();
                 OnRawGpsDataReceived(readString);
                 var result = _parser.Parse(readString);
                 if (typeof(GprmcMessage) != result.GetType()) return;

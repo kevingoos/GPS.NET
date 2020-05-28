@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="crozone.SerialPorts.LinuxSerialPort" Version="2.0.3" />
+    <PackageReference Include="crozone.SerialPorts.WindowsSerialPort" Version="2.0.2" />
     <PackageReference Include="Ghostware.NMEAParser" Version="1.0.6" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.Device.NetStandard" Version="1.0.0" />
     <PackageReference Include="System.IO.Ports" Version="4.7.0" />
   </ItemGroup>
