@@ -16,6 +16,9 @@ namespace Ghostware.GPS.NET.GpsClients
     public class FileGpsClient : BaseGpsClient
     {
         #region Constructors
+        public string LatitudeHeader { get; set; } = "Latitude";
+
+        public string LongitudeHeader { get; set; } = "Longitude";
 
         public FileGpsClient(FileGpsInfo connectionData) : base(GpsType.File, connectionData)
         {
@@ -74,11 +77,11 @@ namespace Ghostware.GPS.NET.GpsClients
 
                                     for (var i = 0; i < headers.Length; i++)
                                     {
-                                        if (headers[i] == Properties.Settings.Default.File_Latitude_Header)
+                                        if (headers[i] == LatitudeHeader)
                                         {
                                             latColumnIndex = i;
                                         }
-                                        if (headers[i] == Properties.Settings.Default.File_Longitude_Header)
+                                        if (headers[i] == LongitudeHeader)
                                         {
                                             longColumnIndex = i;
                                         }
@@ -91,7 +94,7 @@ namespace Ghostware.GPS.NET.GpsClients
                                     var latLongResult = line.Split(';');
                                     if (latLongResult.Length < 2)
                                     {
-                                        throw new InvalidFileFormatException(data.FilePath);
+                                        throw new InvalidFileFormatException(data.FilePath, LatitudeHeader, LongitudeHeader);
                                     }
                                     if (latLongResult.Length < minArraySize)
                                     {

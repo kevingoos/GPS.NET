@@ -31,13 +31,6 @@ namespace Ghostware.GPS.NET.UnitTests.Factories
             Assert.IsInstanceOfType(result, typeof(FileGpsInfo));
         }
 
-        [TestMethod]
-        public void CreateWindowsLocationApiGpsInfoTest()
-        {
-            var result = GpsDataFactory.Create(GpsType.WindowsLocationApi);
-            Assert.IsInstanceOfType(result, typeof(WindowsLocationApiInfo));
-        }
-
         #endregion
 
         #region GetDataType Tests
@@ -61,13 +54,6 @@ namespace Ghostware.GPS.NET.UnitTests.Factories
         {
             var result = GpsDataFactory.GetDataType(GpsType.File);
             Assert.AreEqual(result, typeof(FileGpsInfo));
-        }
-
-        [TestMethod]
-        public void CreateWindowsLocationApiGpsInfoTypeTest()
-        {
-            var result = GpsDataFactory.GetDataType(GpsType.WindowsLocationApi);
-            Assert.AreEqual(result, typeof(WindowsLocationApiInfo));
         }
 
         #endregion

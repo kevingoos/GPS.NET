@@ -1,5 +1,4 @@
 ﻿using System;
-using Ghostware.GPS.NET.Converters;
 using Ghostware.GPS.NET.Enums;
 using Ghostware.GPS.NET.Models.ConnectionInfo;
 using Ghostware.GPS.NET.Models.Events;
@@ -16,7 +15,7 @@ namespace Ghostware.GPS.NET.GpsClients
         protected BaseGpsInfo GpsInfo { get; set; }
 
         #endregion
-        
+
         #region Event handlers
 
         public event EventHandler<GpsDataEventArgs> GpsCallbackEvent;
@@ -47,15 +46,9 @@ namespace Ghostware.GPS.NET.GpsClients
 
         protected virtual void OnGpsDataReceived(GpsDataEventArgs e)
         {
-            if (GpsInfo.CoordinateSystem == GpsCoordinateSystem.Lambert72)
+            if (GpsInfo.CoordinateSystem != GpsCoordinateSystem.GeoEtrs89)
             {
-                var x = 0.0d;
-                var y = 0.0d;
-                var h = 0.0d;
-                CoordinateConverterUtilities.GeoETRS89ToLambert72(e.Latitude, e.Longitude, 0, ref x, ref y, ref h);
-                e.CoordinateSystem = GpsCoordinateSystem.Lambert72;
-                e.Latitude = x;
-                e.Longitude = y;
+                throw new InvalidOperationException(nameof(GpsCoordinateSystem) + "." + nameof(GpsCoordinateSystem.GeoEtrs89) + " expected");
             }
 
             GpsCallbackEvent?.Invoke(this, e);

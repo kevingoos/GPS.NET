@@ -2,7 +2,6 @@
 {
     public enum GpsCoordinateSystem
     {
-        Lambert72,
-        GeoEtrs89,
+        GeoEtrs89
     }
 }

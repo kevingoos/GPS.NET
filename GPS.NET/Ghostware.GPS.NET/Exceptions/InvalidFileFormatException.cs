@@ -8,7 +8,8 @@ namespace Ghostware.GPS.NET.Exceptions
 {
     public class InvalidFileFormatException : Exception
     {
-        public InvalidFileFormatException(string fileFormat) : base($"The file located at: {fileFormat} has an invalid file format! Please include a column named {Properties.Settings.Default.File_Latitude_Header} and {Properties.Settings.Default.File_Longitude_Header}.")
+        public InvalidFileFormatException(string fileFormat, string latitudeHeader, string longitudeHeader) :
+            base($"The file located at: {fileFormat} has an invalid file format! Please include a column named {latitudeHeader} and {longitudeHeader}.")
         {
 
         }

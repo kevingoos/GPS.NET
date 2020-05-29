@@ -2,7 +2,7 @@
 {
     public class ComPortInfo : BaseGpsInfo
     {
-        public string ComPort { get; set; } = "ComPort1";
+        public string ComPort { get; set; }
 
         public ComPortInfo()
         {
