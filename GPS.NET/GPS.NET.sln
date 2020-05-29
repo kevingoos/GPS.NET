@@ -1,21 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET", "Ghostware.GPS.NET\Ghostware.GPS.NET.csproj", "{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghostware.GPS.NET", "Ghostware.GPS.NET\Ghostware.GPS.NET.csproj", "{CFBDB710-C75D-4DDF-94D2-8855FA6F9F07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.GPSDConsole", "Ghostware.GPS.NET.GPSDConsole\Ghostware.GPS.NET.GPSDConsole.csproj", "{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghostware.GPS.NET.GPSDConsole", "Ghostware.GPS.NET.GPSDConsole\Ghostware.GPS.NET.GPSDConsole.csproj", "{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.GPSDWpfApplication", "Ghostware.GPS.NET.GPSDWpfApplication\Ghostware.GPS.NET.GPSDWpfApplication.csproj", "{0A340CF8-4572-4BCC-8F03-0C5447998928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghostware.GPS.NET.UnitTests", "Ghostware.GPS.NET.UnitTests\Ghostware.GPS.NET.UnitTests.csproj", "{53670C74-EF59-43EC-8521-219EF5A95D1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.WindowsAPI.Console", "Ghostware.GPS.NET.WindowsAPI.Console\Ghostware.GPS.NET.WindowsAPI.Console.csproj", "{B676527F-B0E6-4758-8498-AB37A8CE97C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghostware.GPS.NET.FileConsole", "Ghostware.GPS.NET.FileConsole\Ghostware.GPS.NET.FileConsole.csproj", "{BCE5E0DE-603C-4818-8AEF-90C20D4DBC12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.UnitTests", "Ghostware.GPS.NET.UnitTests\Ghostware.GPS.NET.UnitTests.csproj", "{53670C74-EF59-43EC-8521-219EF5A95D1D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.FileConsole", "Ghostware.GPS.NET.FileConsole\Ghostware.GPS.NET.FileConsole.csproj", "{BCE5E0DE-603C-4818-8AEF-90C20D4DBC12}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ghostware.GPS.NET.ComPortConsole", "Ghostware.GPS.NET.ComPortConsole\Ghostware.GPS.NET.ComPortConsole.csproj", "{C284FF02-DAFA-43C4-9689-43A7E500C218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ghostware.GPS.NET.ComPortConsole", "Ghostware.GPS.NET.ComPortConsole\Ghostware.GPS.NET.ComPortConsole.csproj", "{C284FF02-DAFA-43C4-9689-43A7E500C218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,18 +32,6 @@ Global
 		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.RemoteDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9EE412E-A30F-4CDF-8030-B6F6D7F1DC7C}.RemoteDebug|Any CPU.Build.0 = Debug|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.RemoteDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A340CF8-4572-4BCC-8F03-0C5447998928}.RemoteDebug|Any CPU.Build.0 = Debug|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.RemoteDebug|Any CPU.ActiveCfg = RemoteDebug|Any CPU
-		{B676527F-B0E6-4758-8498-AB37A8CE97C7}.RemoteDebug|Any CPU.Build.0 = RemoteDebug|Any CPU
 		{53670C74-EF59-43EC-8521-219EF5A95D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53670C74-EF59-43EC-8521-219EF5A95D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53670C74-EF59-43EC-8521-219EF5A95D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
